@@ -17,6 +17,8 @@ gem 'coffee-rails', '~> 4.0.0'
 
 gem "slim-rails"
 
+gem 'activeadmin', github: 'gregbell/active_admin', branch: 'rails4'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -51,7 +53,7 @@ group :staging, :production do
   gem 'pg'
 end
 
-group :assets do 
+group :assets do
   gem 'execjs'
   gem 'therubyracer'
 end
