@@ -10,7 +10,11 @@ ActiveAdmin.register User do
     column :confirmed_at
     column do |user|
       # default_actions
-      link_to('Suspender', lock_admin_user_path(user))
+      if user.disabled?
+        link_to('Habilitar', enable_admin_user_path(user), method: :put)
+      else
+        link_to('Inhabilitar', disable_admin_user_path(user), method: :put)
+      end
     end
     default_actions
   end
@@ -28,16 +32,35 @@ ActiveAdmin.register User do
 
   controller do
     def permitted_params
-      params.permit admin_user: [:email, :password, :password_confirmation]
+      params.permit user: [:email, :password, :password_confirmation]
     end
   end
 
-  member_action :lock, :method => :put do
+  member_action :disable, :method => :put do
     user = User.find(params[:id])
-    redirect_to({:action => :show}, {:notice => "Locked!"})
+    if user.disable!
+      redirect_to({action: :show}, notice: I18n.t("admin.user.disabled"))
+    else
+      redirect_to({action: :show}, error: user.errors.full_messages)
+    end
+  end
+
+
+  member_action :enable, :method => :put do
+    user = User.find(params[:id])
+    if user.enable!
+      redirect_to({action: :show}, notice: I18n.t("admin.user.enabled"))
+    else
+      redirect_to({action: :show}, error: user.errors.full_messages)
+    end
   end
 
   action_item only: [:show] do
-    link_to('Suspender', lock_admin_user_path(user))
+    if user.disabled?
+      link_to('Habilitar', enable_admin_user_path(user), method: :put)
+    else
+      link_to('Inhabilitar', disable_admin_user_path(user), method: :put)
+    end
   end
+
 end

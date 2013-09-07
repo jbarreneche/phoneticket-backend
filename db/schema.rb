@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130907214302) do
+ActiveRecord::Schema.define(version: 20130907224749) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -47,12 +47,12 @@ ActiveRecord::Schema.define(version: 20130907214302) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
   create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20130907214302) do
     t.string   "phone_number"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "disabled",               default: false
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true
