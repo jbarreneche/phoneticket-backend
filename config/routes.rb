@@ -54,9 +54,11 @@ PhoneTicket::Application.routes.draw do
   #     resources :products
   #   end
 
-  # devise_for :users, path: "api/users"
+  devise_for :users
   namespace :api do
-    resources :users, only: [:create]
+    resources :users, only: [:create] do
+      post "sessions", on: :collection
+    end
     # post "signup" => "devise/registrations#create"
   end
 end

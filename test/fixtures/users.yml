@@ -7,6 +7,11 @@
 first_user:
   email: existing@user.com
   encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+  confirmed_at: <%= 2.weeks.ago %>
+unconfirmed_user:
+  email: unconfirmed_user@user.com
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+  confirmed_at:
 #
 # two: {}
 #  column: value
