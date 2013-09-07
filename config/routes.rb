@@ -1,5 +1,4 @@
 PhoneTicket::Application.routes.draw do
-  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -40,7 +39,7 @@ PhoneTicket::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
@@ -54,4 +53,10 @@ PhoneTicket::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  # devise_for :users, path: "api/users"
+  namespace :api do
+    resources :users, only: [:create]
+    # post "signup" => "devise/registrations#create"
+  end
 end
