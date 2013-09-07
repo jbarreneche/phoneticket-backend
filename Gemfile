@@ -47,3 +47,8 @@ end
 group :staging, :production do
   gem 'pg'
 end
+
+group :assets do 
+  gem 'execjs'
+  gem 'therubyracer'
+end
