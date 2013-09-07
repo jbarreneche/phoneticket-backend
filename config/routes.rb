@@ -39,7 +39,7 @@ PhoneTicket::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'
@@ -53,4 +53,12 @@ PhoneTicket::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  devise_for :users
+  namespace :api do
+    resources :users, only: [:create] do
+      post "sessions", on: :collection
+    end
+    # post "signup" => "devise/registrations#create"
+  end
 end
