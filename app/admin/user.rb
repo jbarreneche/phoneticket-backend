@@ -2,7 +2,7 @@ ActiveAdmin.register User do
 
   menu :priority => 2
   actions :index, :show, :edit, :update
-  COLUMNS = User.columns.map(&:name).map(&:to_sym) - [:encrypted_password, :reset_password_token, :confirmation_token, :auth_token]
+  EXCLUDE_COLUMNS = [:encrypted_password, :reset_password_token, :confirmation_token, :auth_token]
 
   index do
     column :email
@@ -23,7 +23,7 @@ ActiveAdmin.register User do
   filter :disabled
 
   show do |ad|
-    attributes_table *COLUMNS
+    attributes_table *(default_attribute_table_rows - EXCLUDE_COLUMNS)
     active_admin_comments
   end
 
