@@ -21,6 +21,8 @@ module PhoneTicket
     config.i18n.default_locale = :es
     config.assets.precompile += %w( email.css )
 
+    config.autoload_paths << Rails.root + "lib" + "mail_previews" if Rails.env.development?
+
     config.to_prepare do
       Devise::Mailer.layout "basic_email"
     end
