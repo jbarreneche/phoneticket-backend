@@ -32,6 +32,10 @@ gem 'jbuilder', '~> 1.2'
 
 gem 'devise'
 
+gem 'premailer-rails'
+gem 'nokogiri'
+gem 'zurb-foundation'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -62,5 +66,5 @@ end
 group :development do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
+  gem "mail_view"
 end
-
