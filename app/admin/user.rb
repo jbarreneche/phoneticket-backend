@@ -29,6 +29,12 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs "User details" do
+      f.input :first_name
+      f.input :last_name
+      f.input :phone_number
+      f.input :date_of_birth
+      f.input :document
+      f.input :address
       f.input :password
       f.input :password_confirmation
     end

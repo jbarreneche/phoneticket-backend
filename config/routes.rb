@@ -7,6 +7,7 @@ PhoneTicket::Application.routes.draw do
 
   namespace :api do
     resources :users, only: [:create] do
+      put "me" => "users#update", on: :collection
       post "sessions", on: :collection
     end
   end
