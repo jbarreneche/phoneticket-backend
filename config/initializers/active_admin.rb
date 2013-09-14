@@ -122,9 +122,9 @@ ActiveAdmin.setup do |config|
   # You can add before, after and around filters to all of your
   # Active Admin resources and pages from here.
   #
-  # config.before_filter :do_something_awesome
-  
-  
+  config.before_filter :spanish_locale
+
+
   # == Setting a Favicon
   #
   # config.favicon = '/assets/favicon.ico'
