@@ -5,7 +5,8 @@ class ApiSignupTest < ActionDispatch::IntegrationTest
   test "basic signup" do
     post "/api/users", {
       email: "someone@signinup.com",
-      password: "123456"
+      password: "123456",
+      document: "123"
     }, "HTTP_ACCEPT" => "application/json"
 
     assert_equal 200, status
@@ -18,7 +19,8 @@ class ApiSignupTest < ActionDispatch::IntegrationTest
 
     post "/api/users", {
       email: user.email,
-      password: "123456"
+      password: "123456",
+      document: "123"
     }, "HTTP_ACCEPT" => "application/json"
 
     assert_equal 422, status

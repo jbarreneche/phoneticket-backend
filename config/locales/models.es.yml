@@ -1,0 +1,31 @@
+es:
+  attributes:
+    address: Dirección
+    date_of_birth: Fecha de nacimiento
+    confirmation_sent_at: Fecha de envío de mail de confirmación
+    confirmed_at: Fecha de confirmación
+    created_at: Fecha de creación
+    current_sign_in_at: Fecha último ingreso
+    current_sign_in_ip: IP de último ingreso
+    disabled: Deshabilitado
+    document: D.N.I.
+    first_name: Nombre
+    last_name: Apellido
+    phone_number: Teléfono
+    sign_in_count: Cantidad de ingresos
+    updated_at: Fecha de actualización
+  activerecord:
+    models:
+      admin_user:
+        one: Administrador
+        other: Administradores
+      comment:
+        one: Comentario
+        other: Comentarios
+      user:
+        one: Usuario
+        other: Usuarios
+  values:
+    bool:
+      'true': "Sí"
+      'false': "No"

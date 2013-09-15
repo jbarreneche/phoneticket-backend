@@ -1,0 +1,5 @@
+es:
+  admin:
+    user:
+      disabled: "Usuario deshabilitado"
+      enabled: "Usuario habilitado"

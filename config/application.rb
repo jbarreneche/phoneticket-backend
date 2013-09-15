@@ -19,5 +19,12 @@ module PhoneTicket
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :es
+    # config.i18n.locale = :es
+
+    config.autoload_paths << Rails.root + "lib" + "mail_previews" if Rails.env.development?
+
+    config.to_prepare do
+      Devise::Mailer.layout "basic_email"
+    end
   end
 end
