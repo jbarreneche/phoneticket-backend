@@ -1,7 +1,8 @@
+# encoding: UTF-8
 ActiveAdmin.register User do
 
   menu :priority => 2
-  actions :index, :show, :edit, :update
+  actions :index, :show
   EXCLUDE_COLUMNS = [:encrypted_password, :reset_password_token, :confirmation_token, :auth_token,
     :reset_password_sent_at, :remember_created_at, :last_sign_in_at, :last_sign_in_ip,
     :unconfirmed_email]
@@ -42,7 +43,7 @@ ActiveAdmin.register User do
   end
 
   form do |f|
-    f.inputs "User details" do
+    f.inputs "Información del usuario" do
       f.input :first_name
       f.input :last_name
       f.input :phone_number
