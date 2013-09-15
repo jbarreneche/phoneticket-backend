@@ -6,10 +6,18 @@
 #
 first_user:
   email: existing@user.com
+  document: 123456
   encrypted_password: <%= User.new.send(:password_digest, 'password') %>
   confirmed_at: <%= 2.weeks.ago %>
+disabled_user:
+  email: disabled@user.com
+  document: 123457
+  encrypted_password: <%= User.new.send(:password_digest, 'password') %>
+  confirmed_at: <%= 2.weeks.ago %>
+  disabled: true
 unconfirmed_user:
   email: unconfirmed_user@user.com
+  document: 123458
   encrypted_password: <%= User.new.send(:password_digest, 'password') %>
   confirmed_at:
 #

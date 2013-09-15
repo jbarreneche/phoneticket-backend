@@ -48,6 +48,17 @@ class ApiSignupTest < ActionDispatch::IntegrationTest
     assert_equal json_response["error"], I18n.t("devise.failure.invalid")
   end
 
+  test "doesnt allow signin for disabled users" do
+    user = users("disabled_user")
+
+    post "/api/users/sessions", {
+      email: user.email,
+      password: "password"
+    }, "HTTP_ACCEPT" => "application/json"
+
+    assert_equal 401, status
+  end
+
   def json_response
     JSON(response.body)
   end

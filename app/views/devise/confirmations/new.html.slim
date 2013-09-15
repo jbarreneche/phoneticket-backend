@@ -1,0 +1,17 @@
+.row
+  .large-12.columns
+    h1 Solicitud de confirmación de email
+
+    = form_for resource, as: resource_name, url: confirmation_path(resource_name), html:  { method: :post, class: "panel" } do |f|
+      - if resource.errors.any?
+        .alert-box.alert= resource.errors.full_messages.join
+
+      .row
+        .large-2.columns
+          = f.label :email
+        .large-10.columns
+          = f.email_field :email, :autofocus => true
+
+      .row
+        .large-10.large-offset-2.columns
+          = f.submit "Reenviar mail de confirmación", class: "button"

@@ -12,6 +12,16 @@ class Api::UsersController < Api::BaseController
     end
   end
 
+  def update
+    @user = User.find user_params[:email]
+
+    if @user.update_attributes user_params
+      render @user
+    else
+      render @user, status: 422
+    end
+  end
+
   def sessions
     @user = User.find_for_database_authentication(email: user_params[:email])
 
@@ -35,7 +45,9 @@ class Api::UsersController < Api::BaseController
   end
 
   def user_params
-    params.permit(:email, :password, :password_confirmation)
+    params.permit(:email, :password, :password_confirmation,
+      :first_name, :last_name, :date_of_birth, :document,
+      :address, :phone_number)
   end
 
 end
