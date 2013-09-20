@@ -13,6 +13,9 @@ es:
     last_name: Apellido
     phone_number: Teléfono
     sign_in_count: Cantidad de ingresos
+    title: Título
+    synopsis: Sinopsis
+    youtube_trailer: Trailer
     updated_at: Fecha de actualización
   activerecord:
     models:
@@ -25,6 +28,9 @@ es:
       user:
         one: Usuario
         other: Usuarios
+      movie:
+        one: Película
+        other: Películas
   values:
     bool:
       'true': "Sí"
