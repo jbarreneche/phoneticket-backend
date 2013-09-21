@@ -1,22 +1,29 @@
 es:
   attributes:
     address: Dirección
-    date_of_birth: Fecha de nacimiento
     confirmation_sent_at: Fecha de envío de mail de confirmación
     confirmed_at: Fecha de confirmación
     created_at: Fecha de creación
     current_sign_in_at: Fecha último ingreso
     current_sign_in_ip: IP de último ingreso
+    date_of_birth: Fecha de nacimiento
     disabled: Deshabilitado
     document: D.N.I.
     first_name: Nombre
     last_name: Apellido
+    movie_id: Película
+    name: Nombre
+    password: Contraseña
     phone_number: Teléfono
+    room_id: Sala
+    shape: Forma
     sign_in_count: Cantidad de ingresos
-    title: Título
+    starts_at: Fecha y Hora
     synopsis: Sinopsis
-    youtube_trailer: Trailer
+    title: Título
+    theatre_id: Complejo
     updated_at: Fecha de actualización
+    youtube_trailer: Trailer
   activerecord:
     models:
       admin_user:
@@ -31,6 +38,12 @@ es:
       movie:
         one: Película
         other: Películas
+      room:
+        one: Sala
+        other: Salas
+      show:
+        one: Función
+        other: Funciones
   values:
     bool:
       'true': "Sí"

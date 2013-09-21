@@ -1,0 +1,84 @@
+Show_1:
+  movie: Movie_1
+  room: Room_1
+  starts_at: 2013-09-26 19:00:00.000000000 Z
+  created_at: 2013-09-21 01:26:45.697195000 Z
+  updated_at: 2013-09-21 01:26:45.697195000 Z
+
+Show_2:
+  movie: Movie_1
+  room: Room_2
+  starts_at: 2013-09-26 20:30:00.000000000 Z
+  created_at: 2013-09-21 01:26:45.742705000 Z
+  updated_at: 2013-09-21 01:26:45.742705000 Z
+
+Show_3:
+  movie: Movie_1
+  room: Room_3
+  starts_at: 2013-09-26 21:00:00.000000000 Z
+  created_at: 2013-09-21 01:26:45.751536000 Z
+  updated_at: 2013-09-21 01:26:45.751536000 Z
+
+Show_4:
+  movie: Movie_1
+  room: Room_1
+  starts_at: 2013-09-26 21:30:00.000000000 Z
+  created_at: 2013-09-21 01:26:45.759078000 Z
+  updated_at: 2013-09-21 01:26:45.759078000 Z
+
+Show_5:
+  movie: Movie_1
+  room: Room_2
+  starts_at: 2013-09-26 19:00:00.000000000 Z
+  created_at: 2013-09-21 01:26:45.766255000 Z
+  updated_at: 2013-09-21 01:26:45.766255000 Z
+
+Show_6:
+  movie: Movie_1
+  room: Room_3
+  starts_at: 2013-09-26 20:30:00.000000000 Z
+  created_at: 2013-09-21 01:26:45.773577000 Z
+  updated_at: 2013-09-21 01:26:45.773577000 Z
+
+Show_7:
+  movie: Movie_2
+  room: Room_4
+  starts_at: 2013-09-26 16:30:00.000000000 Z
+  created_at: 2013-09-21 01:26:45.781189000 Z
+  updated_at: 2013-09-21 01:26:45.781189000 Z
+
+Show_8:
+  movie: Movie_2
+  room: Room_5
+  starts_at: 2013-09-26 19:00:00.000000000 Z
+  created_at: 2013-09-21 01:26:45.788694000 Z
+  updated_at: 2013-09-21 01:26:45.788694000 Z
+
+Show_9:
+  movie: Movie_2
+  room: Room_6
+  starts_at: 2013-09-26 22:30:00.000000000 Z
+  created_at: 2013-09-21 01:26:45.797201000 Z
+  updated_at: 2013-09-21 01:26:45.797201000 Z
+
+Show_10:
+  movie: Movie_2
+  room: Room_4
+  starts_at: 2013-09-26 23:15:00.000000000 Z
+  created_at: 2013-09-21 01:26:45.803808000 Z
+  updated_at: 2013-09-21 01:26:45.803808000 Z
+
+Show_11:
+  movie: Movie_2
+  room: Room_5
+  starts_at: 2013-09-26 16:30:00.000000000 Z
+  created_at: 2013-09-21 01:26:45.811404000 Z
+  updated_at: 2013-09-21 01:26:45.811404000 Z
+
+Show_12:
+  movie: Movie_2
+  room: Room_6
+  starts_at: 2013-09-26 19:00:00.000000000 Z
+  created_at: 2013-09-21 01:26:45.818727000 Z
+  updated_at: 2013-09-21 01:43:36.422298000 Z
+

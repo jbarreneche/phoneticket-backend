@@ -1,0 +1,42 @@
+Room_1:
+  theatre: Theatre_1
+  name: Sala 1
+  shape: standard
+  created_at: 2013-09-21 00:35:00.503773000 Z
+  updated_at: 2013-09-21 00:35:00.503773000 Z
+
+Room_2:
+  theatre: Theatre_1
+  name: Sala 2
+  shape: standard
+  created_at: 2013-09-21 00:35:00.510188000 Z
+  updated_at: 2013-09-21 00:35:00.510188000 Z
+
+Room_3:
+  theatre: Theatre_2
+  name: Sala 1
+  shape: standard
+  created_at: 2013-09-21 00:35:00.515722000 Z
+  updated_at: 2013-09-21 00:35:00.515722000 Z
+
+Room_4:
+  theatre: Theatre_2
+  name: Sala 2
+  shape: standard
+  created_at: 2013-09-21 00:35:00.520415000 Z
+  updated_at: 2013-09-21 00:35:00.520415000 Z
+
+Room_5:
+  theatre: Theatre_3
+  name: Sala 1
+  shape: standard
+  created_at: 2013-09-21 00:35:00.525287000 Z
+  updated_at: 2013-09-21 00:35:00.525287000 Z
+
+Room_6:
+  theatre: Theatre_3
+  name: Sala 2
+  shape: standard
+  created_at: 2013-09-21 00:35:00.529514000 Z
+  updated_at: 2013-09-21 00:35:00.529514000 Z
+

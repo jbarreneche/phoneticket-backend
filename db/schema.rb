@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130920223902) do
+ActiveRecord::Schema.define(version: 20130920235131) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -50,6 +50,33 @@ ActiveRecord::Schema.define(version: 20130920223902) do
     t.string   "title"
     t.text     "synopsis"
     t.string   "youtube_trailer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rooms", force: true do |t|
+    t.integer  "theatre_id"
+    t.string   "name"
+    t.string   "shape"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rooms", ["theatre_id"], name: "index_rooms_on_theatre_id"
+
+  create_table "shows", force: true do |t|
+    t.integer  "movie_id"
+    t.integer  "room_id"
+    t.datetime "starts_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "shows", ["movie_id"], name: "index_shows_on_movie_id"
+  add_index "shows", ["room_id"], name: "index_shows_on_room_id"
+
+  create_table "theatres", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
