@@ -1,4 +1,5 @@
 json.(@movie, :id, :title, :synopsis, :youtube_trailer)
+json.cover_url @movie.cover.url
 
 shows_by_theatres = @movie.active_shows.group_by do |show|
   show.room.theatre

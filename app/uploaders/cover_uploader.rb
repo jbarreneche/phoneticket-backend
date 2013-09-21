@@ -2,7 +2,6 @@
 class CoverUploader < CarrierWave::Uploader::Base
 
   if ENV['LOCAL_STORAGE']
-    storage :file
     include CarrierWave::MiniMagick
   else
     include Cloudinary::CarrierWave

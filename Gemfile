@@ -56,6 +56,7 @@ gem 'unicorn'
 group :development, :test do
   gem 'pry'
   gem 'mini_magick'
+  gem 'dotenv-rails'
 end
 
 group :staging, :production do
