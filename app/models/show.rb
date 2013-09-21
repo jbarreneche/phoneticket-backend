@@ -6,4 +6,6 @@ class Show < ActiveRecord::Base
   validates_presence_of :room
   validates_presence_of :starts_at
 
+  scope :active, -> { where(["starts_at > ?", Time.current]) }
+
 end

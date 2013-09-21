@@ -10,6 +10,7 @@ PhoneTicket::Application.routes.draw do
       put "me" => "users#update", on: :collection
       post "sessions", on: :collection
     end
+    resources :movies, only: [:show, :index]
   end
 
   devise_for :admin_users, ActiveAdmin::Devise.config
