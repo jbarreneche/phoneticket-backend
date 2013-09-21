@@ -1,20 +1,28 @@
 es:
   attributes:
     address: Dirección
+    author: Autor
+    author_type: Tipo de Autor
+    body: Cuerpo
     confirmation_sent_at: Fecha de envío de mail de confirmación
     confirmed_at: Fecha de confirmación
+    cover: Portada
     created_at: Fecha de creación
     current_sign_in_at: Fecha último ingreso
     current_sign_in_ip: IP de último ingreso
     date_of_birth: Fecha de nacimiento
     disabled: Deshabilitado
+    disabled_eq: Deshabilitado
     document: D.N.I.
     first_name: Nombre
     last_name: Apellido
     movie_id: Película
     name: Nombre
+    namespace: Sección
     password: Contraseña
     phone_number: Teléfono
+    resource_id: Recurso
+    resource_type: Tipo de recurso
     room_id: Sala
     shape: Forma
     sign_in_count: Cantidad de ingresos
@@ -44,6 +52,10 @@ es:
       show:
         one: Función
         other: Funciones
+  active_admin:
+    comments:
+      author_type: Tipo de Autor
+      resource_type: Tipo de recurso
   values:
     bool:
       'true': "Sí"

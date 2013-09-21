@@ -25,7 +25,7 @@ ActiveAdmin.register User do
   end
 
   filter :email
-  filter :disabled
+  filter :disabled_eq, as: :select, collection: [["Sí", true], ["No", false]]
 
   show do |user|
     visible_attributes = (default_attribute_table_rows - EXCLUDE_COLUMNS)
