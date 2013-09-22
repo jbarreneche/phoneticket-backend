@@ -29,6 +29,7 @@ es:
     starts_at: Fecha y Hora
     synopsis: Sinopsis
     title: Título
+    theatre: Complejo
     theatre_id: Complejo
     updated_at: Fecha de actualización
     youtube_trailer: Trailer
