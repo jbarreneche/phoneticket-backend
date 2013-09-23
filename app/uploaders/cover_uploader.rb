@@ -15,7 +15,7 @@ class CoverUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    ActionController::Base.helpers.asset_path("no-cover.jpg")
+    ActionController::Base.helpers.image_url("no-cover.jpg")
   end
 
   # Process files as they are uploaded:
