@@ -6,7 +6,8 @@ shows_by_theatres = @movie.active_shows.group_by do |show|
 end
 
 json.theatres shows_by_theatres.keys do |theatre|
-  json.(theatre, :name)
+  json.(theatre, :id, :name, :latitude, :longitude, :address)
+  json.photo_url path_with_host(theatre.photo.url(:android))
 
   json.shows shows_by_theatres[theatre] do |show|
     json.(show, :id, :starts_at, :room)

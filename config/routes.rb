@@ -11,6 +11,7 @@ PhoneTicket::Application.routes.draw do
       post "sessions", on: :collection
     end
     resources :movies, only: [:show, :index]
+    resources :theatres, only: [:show, :index]
   end
 
   devise_for :admin_users, ActiveAdmin::Devise.config

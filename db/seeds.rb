@@ -1,6 +1,28 @@
-theatre_1, theatre_2, theatre_3 = ["Cine 1", "Cine 2", "Cine 3"].map do |name|
+# encoding: UTF-8
+
+theatres = {
+  "Cine 1" => {
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet quam tellus. Proin pellentesque risus ante, nec pulvinar nisl scelerisque sit amet. Aenean eu diam a odio tincidunt luctus sed in risus. Suspendisse euismod tristique arcu nec laoreet. Pellentesque sit amet tincidunt turpis, sed vehicula nunc. Praesent a nisl congue tortor molestie rutrum condimentum sit amet sem. Donec dignissim tempor velit, vulputate ultrices tellus sodales vel. Donec suscipit aliquet est, ut tristique nisl blandit non.",
+    address: "Avenida Paseo Colón 850",
+    latitude: -34.617811,
+    longitude: -58.368222
+  },
+  "Cine 2" => {
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet quam tellus. Proin pellentesque risus ante, nec pulvinar nisl scelerisque sit amet. Aenean eu diam a odio tincidunt luctus sed in risus. Suspendisse euismod tristique arcu nec laoreet. Pellentesque sit amet tincidunt turpis, sed vehicula nunc. Praesent a nisl congue tortor molestie rutrum condimentum sit amet sem. Donec dignissim tempor velit, vulputate ultrices tellus sodales vel. Donec suscipit aliquet est, ut tristique nisl blandit non.",
+    address: "Avenida Paseo Colón 2214",
+    latitude: -34.588333,
+    longitude: -58.396208
+  },
+  "Cine 3" => {
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet quam tellus. Proin pellentesque risus ante, nec pulvinar nisl scelerisque sit amet. Aenean eu diam a odio tincidunt luctus sed in risus. Suspendisse euismod tristique arcu nec laoreet. Pellentesque sit amet tincidunt turpis, sed vehicula nunc. Praesent a nisl congue tortor molestie rutrum condimentum sit amet sem. Donec dignissim tempor velit, vulputate ultrices tellus sodales vel. Donec suscipit aliquet est, ut tristique nisl blandit non.",
+    address: "Avenida Córdoba 2122",
+    latitude: -34.599709,
+    longitude: -58.397981
+  }
+}
+theatre_1, theatre_2, theatre_3 = theatres.map do |(name, attributes)|
   theatre = Theatre.where(name: name).first_or_initialize
-  theatre.update_attributes({})
+  theatre.update_attributes attributes
   theatre
 end
 
