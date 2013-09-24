@@ -4,7 +4,7 @@ ActiveAdmin.register Show do
   index do
     column :id
     column :movie
-    column do |show|
+    column :room do |show|
       link_to show.room.to_label, admin_room_path(show.room)
     end
     column :starts_at

@@ -8,4 +8,8 @@ class Show < ActiveRecord::Base
 
   scope :active, -> { where(["starts_at > ?", Time.current]) }
 
+  def name
+    "#{movie.title} - #{room.to_label}"
+  end
+
 end

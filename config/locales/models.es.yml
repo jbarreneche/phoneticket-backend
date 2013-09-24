@@ -16,6 +16,7 @@ es:
     document: D.N.I.
     first_name: Nombre
     last_name: Apellido
+    movie: Película
     movie_id: Película
     name: Nombre
     namespace: Sección
@@ -23,6 +24,7 @@ es:
     phone_number: Teléfono
     resource_id: Recurso
     resource_type: Tipo de recurso
+    room: Sala
     room_id: Sala
     shape: Forma
     sign_in_count: Cantidad de ingresos
