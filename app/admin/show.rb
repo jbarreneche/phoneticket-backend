@@ -11,6 +11,19 @@ ActiveAdmin.register Show do
     default_actions
   end
 
+  show do |show|
+    attributes_table do
+      row :id
+      row :movie
+      row :room do
+        link_to show.room.to_label, admin_room_path(show.room)
+      end
+      row :starts_at
+      row :created_at
+      row :updated_at
+    end
+  end
+
   controller do
     def permitted_params
       params.permit show: [
