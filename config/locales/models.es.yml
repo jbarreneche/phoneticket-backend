@@ -59,6 +59,13 @@ es:
     comments:
       author_type: Tipo de Autor
       resource_type: Tipo de recurso
+  errors:
+    messages:
+      carrierwave_processing_error: "No se puede redimensionar la imágen."
+      carrierwave_integrity_error: "El archivo no es una imágen."
+      carrierwave_download_error: "No se pudo descargar el archivo."
+      extension_white_list_error: "No está permitido subir archivos de tipo %{extension}. Los tipos permitidos son: %{allowed_types}"
+      extension_black_list_error: "No está permitido subir archivos de tipo %{extension}. Los tipos prohibidos son: %{prohibited_types}"
   values:
     bool:
       'true': "Sí"
