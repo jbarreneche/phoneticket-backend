@@ -1,9 +1,12 @@
 es:
   attributes:
     address: Dirección
+    audience_rating: Clasificación
     author: Autor
     author_type: Tipo de Autor
     body: Cuerpo
+    cast_raw: Actores
+    cast: Actores
     confirmation_sent_at: Fecha de envío de mail de confirmación
     confirmed_at: Fecha de confirmación
     cover: Portada
@@ -15,6 +18,7 @@ es:
     disabled_eq: Deshabilitado
     document: D.N.I.
     first_name: Nombre
+    genre: Género
     last_name: Apellido
     movie: Película
     movie_id: Película
@@ -36,6 +40,19 @@ es:
     updated_at: Fecha de actualización
     youtube_trailer: Trailer
   activerecord:
+    errors:
+      models:
+        movie:
+          attributes:
+            base:
+              restrict_dependent_destroy:
+                one: "No se puede eliminar porque existe una función asociada"
+                many: "No se puede eliminar porque existen funciones asociadas"
+    errors:
+      messages:
+        restrict_dependent_destroy:
+          one: "No se puede eliminar porque existe una %{record} asociada"
+          many: "No se puede eliminar porque existen %{record} asociadas"
     models:
       admin_user:
         one: Administrador
@@ -52,6 +69,7 @@ es:
       room:
         one: Sala
         other: Salas
+      shows: Funciones
       show:
         one: Función
         other: Funciones
@@ -59,7 +77,23 @@ es:
     comments:
       author_type: Tipo de Autor
       resource_type: Tipo de recurso
-  errors:
+  movie:
+    genres:
+      action: Acción
+      adventure: Aventura
+      animation: Animación
+      biography: Biográfica
+      comedy: Comedia
+      documentary: Documental
+      drama: Drama
+      family: Familiar
+      horror: Horror
+      musical: Musical
+      mystery: Suspenso
+      romance: Romántica
+      "sci-fi": "Ciencia Ficción"
+      thriller: Thriller
+    errors:
     messages:
       carrierwave_processing_error: "No se puede redimensionar la imágen."
       carrierwave_integrity_error: "El archivo no es una imágen."
