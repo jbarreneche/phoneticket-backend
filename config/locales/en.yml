@@ -20,4 +20,19 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  movie:
+    genres:
+      action: Acción
+      adventure: Aventura
+      animation: Animación
+      biography: Biográfica
+      comedy: Comedia
+      documentary: Documental
+      drama: Drama
+      family: Familiar
+      horror: Horror
+      musical: Musical
+      mystery: Suspenso
+      romance: Romántica
+      "sci-fi": "Ciencia Ficción"
+      thriller: Thriller

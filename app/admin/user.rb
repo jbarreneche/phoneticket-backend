@@ -1,8 +1,9 @@
 # encoding: UTF-8
 ActiveAdmin.register User do
 
-  menu :priority => 2
+  menu priority: 2
   actions :index, :show
+
   EXCLUDE_COLUMNS = [:encrypted_password, :reset_password_token, :confirmation_token, :auth_token,
     :reset_password_sent_at, :remember_created_at, :last_sign_in_at, :last_sign_in_ip,
     :unconfirmed_email]
@@ -24,7 +25,7 @@ ActiveAdmin.register User do
   end
 
   filter :email
-  filter :disabled
+  filter :disabled_eq, as: :select, collection: [["Sí", true], ["No", false]]
 
   show do |user|
     visible_attributes = (default_attribute_table_rows - EXCLUDE_COLUMNS)
@@ -39,7 +40,6 @@ ActiveAdmin.register User do
         end
       end
     end
-    active_admin_comments
   end
 
   form do |f|

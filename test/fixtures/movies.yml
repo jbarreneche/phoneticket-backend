@@ -1,0 +1,16 @@
+Movie_1:
+  title: Matrix
+  synopsis: |
+    A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.
+  youtube_trailer: http://www.youtube.com/watch?v=m8e-FF8MsqU
+  created_at: 2013-09-20 23:35:46.434294000 Z
+  updated_at: 2013-09-21 00:35:26.768646000 Z
+
+Movie_2:
+  title: Aviones
+  synopsis: |
+    A cropdusting plane with a fear of heights lives his dream of competing in a famous around-the-world aerial race.
+  youtube_trailer: http://www.youtube.com/watch?v=YRjztG65XgI
+  created_at: 2013-09-21 00:35:27.081161000 Z
+  updated_at: 2013-09-21 00:35:27.081161000 Z
+
