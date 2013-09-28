@@ -12,8 +12,14 @@ class Api::UsersController < Api::BaseController
     end
   end
 
+  def show
+    @user = User.find_by_email! params[:email]
+
+    render @user
+  end
+
   def update
-    @user = User.find user_params[:email]
+    @user = User.find_by_email! user_params[:email]
 
     if @user.update_attributes user_params
       render @user
