@@ -35,6 +35,11 @@ gem 'devise'
 gem 'premailer-rails'
 gem 'nokogiri'
 gem 'zurb-foundation'
+gem 'carrierwave'
+gem 'cloudinary'
+
+gem 'foreman'
+gem 'unicorn'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -50,11 +55,12 @@ gem 'unicorn'
 
 group :development, :test do
   gem 'pry'
+  gem 'mini_magick'
+  gem 'dotenv-rails'
 end
 
 group :staging, :production do
   gem 'pg'
-  gem 'unicorn'
   gem 'rails_12factor'
 end
 
