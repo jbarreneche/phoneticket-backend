@@ -27,14 +27,18 @@ theatre_1, theatre_2, theatre_3 = theatres.map do |(name, attributes)|
   theatre
 end
 
+def calc_shape(number)
+  number.even? ? "standard" : "small"
+end
+
 rooms = [theatre_1, theatre_2, theatre_3].flat_map do |theatre|
   room_1 = theatre.rooms.where(name: "Sala 1").first_or_initialize
   room_1.update_attributes(
-    shape: "standard"
+    shape: calc_shape(room_1.id + theatre.id)
   )
   room_2 = theatre.rooms.where(name: "Sala 2").first_or_initialize
   room_2.update_attributes(
-    shape: "standard"
+    shape: calc_shape(room_2.id + theatre.id)
   )
   [room_1, room_2]
 end
@@ -78,4 +82,40 @@ end
 
 (planes_rooms * 2).zip %w[16:30 19:00 22:30 23:15].cycle do |room, time|
   room.shows.where(starts_at: Time.zone.parse("#{thursday} #{time}"), movie: planes).first_or_create!
+end
+
+def generate_purchase(show)
+  user     = User.first
+  places   = show.room_shape.places.take(rand(3) + 1)
+  purchase = Purchase.new(user: user, show: show)
+
+  places.each do |place|
+    purchase.seats.build(code: place.join("-"), status: Seat::STATUS_PURCHASED, taken_by: user, show: show)
+  end
+  purchase.save
+end
+
+def generate_reservation(show)
+  user        = User.first
+  places      = show.room_shape.places.reverse.take(rand(3) + 1)
+  reservation = Reservation.new(user: user, show: show)
+
+  places.each do |place|
+    reservation.seats.build(code: place.join("-"), status: Seat::STATUS_RESERVED, taken_by: user, show: show)
+  end
+  reservation.save
+end
+
+Show.all.each do |show|
+  next if show.seats.any?
+
+  case rand(10)
+  when 0..3
+    generate_purchase(show)
+  when 5..8
+    generate_reservation(show)
+  else
+    generate_purchase(show)
+    generate_reservation(show)
+  end
 end

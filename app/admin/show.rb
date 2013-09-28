@@ -1,6 +1,12 @@
 ActiveAdmin.register Show do
   menu priority: 2
 
+  filter :movie
+  filter :room
+  filter :starts_at
+  filter :created_at
+  filter :updated_at
+
   index do
     column :id
     column :movie
@@ -8,6 +14,10 @@ ActiveAdmin.register Show do
       link_to show.room.to_label, admin_room_path(show.room)
     end
     column :starts_at
+    column(:available_seats) {|show| show.available_seats }
+    column(:reserved_seats)  {|show| show.reserved_seats }
+    column(:purchased_seats) {|show| show.purchased_seats }
+
     default_actions
   end
 
@@ -19,6 +29,9 @@ ActiveAdmin.register Show do
         link_to show.room.to_label, admin_room_path(show.room)
       end
       row :starts_at
+      row :available_seats
+      row :reserved_seats
+      row :purchased_seats
       row :created_at
       row :updated_at
     end

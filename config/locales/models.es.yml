@@ -4,6 +4,7 @@ es:
     audience_rating: Clasificación
     author: Autor
     author_type: Tipo de Autor
+    available_seats: Asientos disponibles
     body: Cuerpo
     cast_raw: Actores
     cast: Actores
@@ -26,6 +27,8 @@ es:
     namespace: Sección
     password: Contraseña
     phone_number: Teléfono
+    purchased_seats: Asientos Comprados
+    reserved_seats: Asientos Reservados
     resource_id: Recurso
     resource_type: Tipo de recurso
     room: Sala
@@ -48,6 +51,12 @@ es:
               restrict_dependent_destroy:
                 one: "No se puede eliminar porque existe una función asociada"
                 many: "No se puede eliminar porque existen funciones asociadas"
+        show:
+          attributes:
+            base:
+              restrict_dependent_destroy:
+                one: "No se puede eliminar porque existe un asiento ocupado"
+                many: "No se puede eliminar porque existen asientos ocupados"
     errors:
       messages:
         restrict_dependent_destroy:
