@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
-  validates_uniqueness_of :document, allow_blank: true
+  validates_uniqueness_of :document, allow_nil: true
 
   def disable!
     update_attributes disabled: true
