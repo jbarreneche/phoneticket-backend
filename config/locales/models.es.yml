@@ -41,6 +41,8 @@ es:
     show_starts_at: Fecha de la función
     sign_in_count: Cantidad de ingresos
     starts_at: Fecha y Hora
+    status: Estado
+    status_eq: Estado
     synopsis: Sinopsis
     title: Título
     theatre: Complejo
@@ -119,6 +121,11 @@ es:
       carrierwave_download_error: "No se pudo descargar el archivo."
       extension_white_list_error: "No está permitido subir archivos de tipo %{extension}. Los tipos permitidos son: %{allowed_types}"
       extension_black_list_error: "No está permitido subir archivos de tipo %{extension}. Los tipos prohibidos son: %{prohibited_types}"
+  reservation:
+    statuses:
+      pending: "Pendiente"
+      canceled: "Cancelada"
+      completed: "Completada"
   room:
     shapes:
       small: Chica

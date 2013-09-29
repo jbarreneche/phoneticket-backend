@@ -2,7 +2,7 @@ ActiveAdmin.register Reservation do
   menu priority: 2
   actions :index, :show
 
-  filter :status, collection: Reservation::STATUSES, as: :select
+  filter :status_eq, collection: ->(*) { reservation_statuses_collection }, as: :select
   filter :show_room_id_eq, as: :select, collection: Room.all
   filter :show_movie_id_eq, as: :select, collection: Movie.all
   filter :user_email, as: :string
@@ -10,7 +10,9 @@ ActiveAdmin.register Reservation do
 
   index do
     column :id
-    column :status
+    column :status do |reservation|
+      human_reservation_status(reservation.status)
+    end
     column :show
     column :movie do |reservation|
       movie = reservation.show.movie
@@ -32,7 +34,9 @@ ActiveAdmin.register Reservation do
   show do |reservation|
     attributes_table do
       row :id
-      row :status
+      row :status do
+        human_reservation_status(reservation.status)
+      end
       row :show
       row :starts_at do
         l reservation.show.starts_at, format: :short
