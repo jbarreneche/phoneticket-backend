@@ -2,6 +2,7 @@ ActiveAdmin.register Reservation do
   menu priority: 2
   actions :index, :show
 
+  filter :status, collection: Reservation::STATUSES, as: :select
   filter :show_room_id_eq, as: :select, collection: Room.all
   filter :show_movie_id_eq, as: :select, collection: Movie.all
   filter :user_email, as: :string
@@ -9,6 +10,7 @@ ActiveAdmin.register Reservation do
 
   index do
     column :id
+    column :status
     column :show
     column :movie do |reservation|
       movie = reservation.show.movie
@@ -19,12 +21,18 @@ ActiveAdmin.register Reservation do
     end
     column :user
 
-    default_actions
+    actions do |reservation|
+      links = raw('')
+      links << link_to('Cancelar', cancel_admin_reservation_path(reservation), method: :put) if reservation.cancellable?
+      links
+    end
+    # default_actions
   end
 
   show do |reservation|
     attributes_table do
       row :id
+      row :status
       row :show
       row :starts_at do
         l reservation.show.starts_at, format: :short
@@ -38,4 +46,18 @@ ActiveAdmin.register Reservation do
     end
   end
 
+  member_action :cancel, method: :put do
+    reservation = Reservation.find(params[:id])
+    if reservation.cancel!
+      redirect_to :back, notice: I18n.t("admin.reservation.canceled")
+    else
+      redirect_to :back, error: reservation.errors.full_messages
+    end
+  end
+
+  action_item only: [:show] do
+    if reservation.cancellable?
+      link_to('Cancelar', cancel_admin_reservation_path(reservation), method: :put)
+    end
+  end
 end
