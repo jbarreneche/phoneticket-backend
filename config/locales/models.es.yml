@@ -33,7 +33,12 @@ es:
     resource_type: Tipo de recurso
     room: Sala
     room_id: Sala
+    seats: Asientos
     shape: Forma
+    show: Función
+    show_room_id_eq: Sala
+    show_movie_id_eq: Película
+    show_starts_at: Fecha de la función
     sign_in_count: Cantidad de ingresos
     starts_at: Fecha y Hora
     synopsis: Sinopsis
@@ -41,6 +46,8 @@ es:
     theatre: Complejo
     theatre_id: Complejo
     updated_at: Fecha de actualización
+    user: Usuario
+    user_email: Email del usuario
     youtube_trailer: Trailer
   activerecord:
     errors:
@@ -79,6 +86,9 @@ es:
         one: Sala
         other: Salas
       shows: Funciones
+      reservation:
+        one: Reserva
+        other: Reservas
       show:
         one: Función
         other: Funciones
