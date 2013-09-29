@@ -109,6 +109,10 @@ es:
       carrierwave_download_error: "No se pudo descargar el archivo."
       extension_white_list_error: "No está permitido subir archivos de tipo %{extension}. Los tipos permitidos son: %{allowed_types}"
       extension_black_list_error: "No está permitido subir archivos de tipo %{extension}. Los tipos prohibidos son: %{prohibited_types}"
+  room:
+    shapes:
+      small: Chica
+      standard: Normal
   values:
     bool:
       'true': "Sí"
