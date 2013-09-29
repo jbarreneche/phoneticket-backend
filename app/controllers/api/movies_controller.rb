@@ -1,4 +1,5 @@
 class Api::MoviesController < Api::BaseController
+  respond_to :json
 
   def index
     @movies = Movie.with_active_shows
