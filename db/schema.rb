@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130928160905) do
+ActiveRecord::Schema.define(version: 20130928192528) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -60,6 +60,28 @@ ActiveRecord::Schema.define(version: 20130928160905) do
     t.string   "audience_rating"
   end
 
+  create_table "purchases", force: true do |t|
+    t.integer  "show_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "purchases", ["show_id"], name: "index_purchases_on_show_id"
+  add_index "purchases", ["user_id"], name: "index_purchases_on_user_id"
+
+  create_table "reservations", force: true do |t|
+    t.integer  "show_id"
+    t.integer  "user_id"
+    t.integer  "purchase_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reservations", ["purchase_id"], name: "index_reservations_on_purchase_id"
+  add_index "reservations", ["show_id"], name: "index_reservations_on_show_id"
+  add_index "reservations", ["user_id"], name: "index_reservations_on_user_id"
+
   create_table "rooms", force: true do |t|
     t.integer  "theatre_id"
     t.string   "name"
@@ -69,6 +91,19 @@ ActiveRecord::Schema.define(version: 20130928160905) do
   end
 
   add_index "rooms", ["theatre_id"], name: "index_rooms_on_theatre_id"
+
+  create_table "seats", force: true do |t|
+    t.string   "code"
+    t.string   "status"
+    t.integer  "show_id"
+    t.integer  "taken_by_id"
+    t.string   "taken_by_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "seats", ["show_id"], name: "index_seats_on_show_id"
+  add_index "seats", ["taken_by_id", "taken_by_type"], name: "index_seats_on_taken_by_id_and_taken_by_type"
 
   create_table "shows", force: true do |t|
     t.integer  "movie_id"

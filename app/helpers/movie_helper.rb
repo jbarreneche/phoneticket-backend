@@ -10,6 +10,6 @@ module MovieHelper
   end
 
   def human_genre(genre)
-    I18n.t("movie.genres.#{genre}") if genre
+    I18n.t("movie.genres.#{genre}", default: genre.titleize) if genre
   end
 end
