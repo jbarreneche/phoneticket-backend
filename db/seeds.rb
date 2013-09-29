@@ -9,7 +9,7 @@ theatres = {
   },
   "Cine 2" => {
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet quam tellus. Proin pellentesque risus ante, nec pulvinar nisl scelerisque sit amet. Aenean eu diam a odio tincidunt luctus sed in risus. Suspendisse euismod tristique arcu nec laoreet. Pellentesque sit amet tincidunt turpis, sed vehicula nunc. Praesent a nisl congue tortor molestie rutrum condimentum sit amet sem. Donec dignissim tempor velit, vulputate ultrices tellus sodales vel. Donec suscipit aliquet est, ut tristique nisl blandit non.",
-    address: "Avenida Paseo Colón 2214",
+    address: "Avenida Las Heras 2214",
     latitude: -34.588333,
     longitude: -58.396208
   },
