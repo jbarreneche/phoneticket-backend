@@ -9,9 +9,22 @@ ActiveAdmin.register Room do
     column :id
     column :theatre
     column :name
-    column :shape
+    column :shape do |room|
+      human_shape(room.shape)
+    end
+
     default_actions
   end
 
+  show do |room|
+    attributes_table do
+      row :id
+      row :theatre
+      row :name
+      row :shape do
+        human_shape(room.shape)
+      end
+    end
+  end
 
 end
