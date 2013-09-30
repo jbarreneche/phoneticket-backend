@@ -3,3 +3,5 @@ es:
     user:
       disabled: "Usuario deshabilitado"
       enabled: "Usuario habilitado"
+    reservation:
+      canceled: "La reserva fue cancelada"

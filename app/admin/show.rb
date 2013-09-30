@@ -13,7 +13,9 @@ ActiveAdmin.register Show do
     column :room do |show|
       link_to show.room.to_label, admin_room_path(show.room)
     end
-    column :starts_at
+    column :starts_at do |show|
+      l show.starts_at, format: :short
+    end
     column(:available_seats) {|show| show.available_seats }
     column(:reserved_seats)  {|show| show.reserved_seats }
     column(:purchased_seats) {|show| show.purchased_seats }

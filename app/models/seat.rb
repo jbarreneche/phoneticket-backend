@@ -5,4 +5,8 @@ class Seat < ActiveRecord::Base
   STATUSES =
     (STATUS_RESERVED, STATUS_PURCHASED = %w[reserved purchased])
 
+  def to_s
+    code
+  end
+
 end
