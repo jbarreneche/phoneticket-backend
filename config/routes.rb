@@ -13,6 +13,7 @@ PhoneTicket::Application.routes.draw do
     end
     resources :movies, only: [:show, :index]
     resources :theatres, only: [:show, :index]
+    resources :shows, only: [:show]
   end
 
   devise_for :admin_users, ActiveAdmin::Devise.config

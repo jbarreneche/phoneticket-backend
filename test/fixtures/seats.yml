@@ -1,11 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
 one:
-  show_id: 
-  code: MyString
-  taken_by_id: 
-
-two:
-  show_id: 
-  code: MyString
-  taken_by_id: 
+  show: Show_1
+  code: b-1
+  taken_by: reservation_1

@@ -9,4 +9,8 @@ class Seat < ActiveRecord::Base
     code
   end
 
+  def to_place
+    code.split('-')
+  end
+
 end
