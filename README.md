@@ -370,3 +370,89 @@ BODY:
   "address": ""
 }
 ```
+
+### Funciones
+
+#### Para consultar el estado de ocupación de una determinada función
+
+`curl http://phoneticket-stg.herokuapp.com/api/shows/51`
+
+```json
+{
+  "status": {
+    "left": {
+      "rows": [
+        "a",
+        "b"
+      ],
+      "columns": [
+        "1",
+        "2"
+      ],
+      "seats": [
+        [
+          "a-1",
+          "a-2"
+        ],
+        [
+          "b-1",
+          "b-2"
+        ]
+      ],
+      "void_seats": [
+        "a-1"
+      ],
+      "reserved_seats": []
+    },
+    "middle": {
+      "rows": [
+        "a",
+        "b"
+      ],
+      "columns": [
+        "3",
+        "4"
+      ],
+      "seats": [
+        [
+          "a-3",
+          "a-4"
+        ],
+        [
+          "b-3",
+          "b-4"
+        ]
+      ],
+      "void_seats": [],
+      "reserved_seats": []
+    },
+    "right": {
+      "rows": [
+        "a",
+        "b"
+      ],
+      "columns": [
+        "5",
+        "6"
+      ],
+      "seats": [
+        [
+          "a-5",
+          "a-6"
+        ],
+        [
+          "b-5",
+          "b-6"
+        ]
+      ],
+      "void_seats": [
+        "a-6"
+      ],
+      "reserved_seats": [
+        "b-6",
+        "b-5"
+      ]
+    }
+  }
+}
+```
