@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   validates_uniqueness_of :document, allow_nil: true
 
+  has_many :purchases
+  has_many :reservations
+
   def disable!
     update_attributes disabled: true
   end
