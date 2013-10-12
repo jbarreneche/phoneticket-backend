@@ -90,7 +90,7 @@ def generate_purchase(show)
   purchase = Purchase.new(user: user, show: show)
 
   places.each do |place|
-    purchase.seats.build(code: place.join("-"), status: Seat::STATUS_PURCHASED, taken_by: user, show: show)
+    purchase.seats.build(code: place, status: Seat::STATUS_PURCHASED, taken_by: user, show: show)
   end
   purchase.save
 end
@@ -101,7 +101,7 @@ def generate_reservation(show)
   reservation = Reservation.new(user: user, show: show)
 
   places.each do |place|
-    reservation.seats.build(code: place.join("-"), status: Seat::STATUS_RESERVED, taken_by: user, show: show)
+    reservation.seats.build(code: place, status: Seat::STATUS_RESERVED, taken_by: user, show: show)
   end
   reservation.save
 end
