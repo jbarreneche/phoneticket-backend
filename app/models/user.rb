@@ -8,6 +8,14 @@ class User < ActiveRecord::Base
   has_many :purchases
   has_many :reservations
 
+  def unfinished_reservations
+    purchases.still_not_finished.includes(:seats, show: [:room, :movie])
+  end
+
+  def unfinished_purchases
+    reservations.still_not_finished.includes(:seats, show: [:room, :movie])
+  end
+
   def disable!
     update_attributes disabled: true
   end

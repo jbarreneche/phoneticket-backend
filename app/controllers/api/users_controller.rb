@@ -13,9 +13,7 @@ class Api::UsersController < Api::BaseController
   end
 
   def show
-    @user = User.includes(purchases: { show: [:room, :movie] }, reservations: { show: [:room, :movie] })
-      .references(:shows, :movies, :room)
-      .find_by_email! params[:email]
+    @user = User.find_by_email! params[:email]
 
     render @user
   end
