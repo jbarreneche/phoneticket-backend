@@ -48,9 +48,21 @@ class Shape
     @config = config
   end
 
+  def each_body(&block)
+    return enum_for(:each_body) unless block
+
+    bodies.each(&block)
+  end
+
   def bodies
     @bodies ||= @config.map do |body_name, config|
       Body.new(body_name, config)
+    end
+  end
+
+  def has_place?(seat_code)
+    bodies.any? do |body|
+      body.has_place? seat_code
     end
   end
 
@@ -59,23 +71,39 @@ class Shape
   end
 
   class Body
-    attr_reader :rows, :columns, :void_places
+    attr_reader :rows, :columns, :void_places, :name
     def initialize(name, config)
       @name = name
 
       @rows        = config.fetch("rows")
       @columns     = config.fetch("columns")
-      @void_places = config.fetch("void_places")
+      @void_places = config.fetch("void_places").map do |(row, column)|
+        seat_code(row, column)
+      end
     end
 
     def places
       @places ||= body_matrix - void_places
     end
 
+    def to_matrix
+      body_matrix.each_slice(rows.size)
+    end
+
+    def has_place?(seat_code)
+      places.include? seat_code
+    end
+
     private
 
     def body_matrix
-      rows.product(columns)
+      rows.product(columns).map do |(row, column)|
+        seat_code(row, column)
+      end
+    end
+
+    def seat_code(row, column)
+      "#{row}-#{column}"
     end
 
   end

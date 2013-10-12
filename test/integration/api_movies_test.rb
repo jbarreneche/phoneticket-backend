@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ApiSignupTest < ActionDispatch::IntegrationTest
+class APIMoviesTest < ActionDispatch::IntegrationTest
   setup do
     @matrix = movies(:Movie_1)
   end
