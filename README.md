@@ -361,13 +361,105 @@ BODY:
 
 ```json
 {
-  "email": "snipperme@gmail.com",
-  "first_name": "",
-  "last_name": "",
-  "phone_number": "",
-  "date_of_birth": null,
-  "document": "123456",
-  "address": ""
+    "email": "snipperme@gmail.com",
+    "first_name": "Juani",
+    "last_name": "Barren",
+    "phone_number": "123456",
+    "date_of_birth": "1922-09-02",
+    "document": "31376588",
+    "address": "Cevallos 656",
+    "purchases": [
+        {
+            "id": 33,
+            "seats": [
+                "b-6",
+                "b-5"
+            ],
+            "show": {
+                "id": 51,
+                "starts_at": "2013-10-17T19:00:00.000Z",
+                "room": {
+                    "id": 6,
+                    "theatre_id": 3,
+                    "name": "Sala 2",
+                    "shape": "small",
+                    "created_at": "2013-09-21T02:55:54.944Z",
+                    "updated_at": "2013-09-28T20:58:01.342Z"
+                },
+                "movie": {
+                    "id": 2,
+                    "title": "Aviones",
+                    "synopsis": "Desde las alturas del mundo de “Cars” llega la película de Disney “Aviones”. La nueva película de animación en 3D llena de acción y aventuras, protagonizada por Dusty (voz de Dane Cook), un avión que sueña con participar en una competición aérea de altos vuelos. Pero Dusty no fue precisamente construido para competir y resulta que... ¡tiene miedo a las alturas! Así que, recurre a un experimentado aviador naval que le ayuda a clasificarse para retar al vigente campeón del circuito de carreras. Dusty demostrará su valor para alcanzar alturas inimaginables y enseñará al mundo lo que hay que hacer para levantar el vuelo. La película de Disney “Aviones” despega en agosto de 2013 y estará disponible en Disney Digital 3D™ en una selección de cines.\n",
+                    "youtube_trailer": "http://www.youtube.com/watch?v=YRjztG65XgI",
+                    "created_at": "2013-09-21T02:55:54.992Z",
+                    "updated_at": "2013-10-12T15:11:19.523Z",
+                    "cover": {
+                        "url": "http://res.cloudinary.com/he9oj48ys/image/upload/v1379784107/becmvk91thejcvktghmd.jpg",
+                        "admin": {
+                            "url": "http://res.cloudinary.com/he9oj48ys/image/upload/c_fill,h_160,w_120/v1379784107/becmvk91thejcvktghmd.jpg"
+                        },
+                        "android": {
+                            "url": "http://res.cloudinary.com/he9oj48ys/image/upload/c_fill,h_320,w_240/v1379784107/becmvk91thejcvktghmd.jpg"
+                        }
+                    },
+                    "cast": [
+                        "Val Kilmer",
+                        "Julia Louis-Dreyfus"
+                    ],
+                    "director": "Klay Hall",
+                    "country": "Estados Unidos",
+                    "genre": "animation",
+                    "audience_rating": "ATP"
+                }
+            }
+        }
+    ],
+    "reservations": [
+        {
+            "id": 27,
+            "seats": [
+                "a-3",
+                "a-2"
+            ],
+            "show": {
+                "id": 49,
+                "starts_at": "2013-10-17T23:15:00.000Z",
+                "room": {
+                    "id": 4,
+                    "theatre_id": 2,
+                    "name": "Sala 2",
+                    "shape": "standard",
+                    "created_at": "2013-09-21T02:55:54.925Z",
+                    "updated_at": "2013-09-21T02:55:54.925Z"
+                },
+                "movie": {
+                    "id": 2,
+                    "title": "Aviones",
+                    "synopsis": "Desde las alturas del mundo de “Cars” llega la película de Disney “Aviones”. La nueva película de animación en 3D llena de acción y aventuras, protagonizada por Dusty (voz de Dane Cook), un avión que sueña con participar en una competición aérea de altos vuelos. Pero Dusty no fue precisamente construido para competir y resulta que... ¡tiene miedo a las alturas! Así que, recurre a un experimentado aviador naval que le ayuda a clasificarse para retar al vigente campeón del circuito de carreras. Dusty demostrará su valor para alcanzar alturas inimaginables y enseñará al mundo lo que hay que hacer para levantar el vuelo. La película de Disney “Aviones” despega en agosto de 2013 y estará disponible en Disney Digital 3D™ en una selección de cines.\n",
+                    "youtube_trailer": "http://www.youtube.com/watch?v=YRjztG65XgI",
+                    "created_at": "2013-09-21T02:55:54.992Z",
+                    "updated_at": "2013-10-12T15:11:19.523Z",
+                    "cover": {
+                        "url": "http://res.cloudinary.com/he9oj48ys/image/upload/v1379784107/becmvk91thejcvktghmd.jpg",
+                        "admin": {
+                            "url": "http://res.cloudinary.com/he9oj48ys/image/upload/c_fill,h_160,w_120/v1379784107/becmvk91thejcvktghmd.jpg"
+                        },
+                        "android": {
+                            "url": "http://res.cloudinary.com/he9oj48ys/image/upload/c_fill,h_320,w_240/v1379784107/becmvk91thejcvktghmd.jpg"
+                        }
+                    },
+                    "cast": [
+                        "Val Kilmer",
+                        "Julia Louis-Dreyfus"
+                    ],
+                    "director": "Klay Hall",
+                    "country": "Estados Unidos",
+                    "genre": "animation",
+                    "audience_rating": "ATP"
+                }
+            }
+        }
+    ]
 }
 ```
 
