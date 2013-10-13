@@ -1,15 +1,54 @@
+// CinemAr colors
+$c-golden: #fcb13d;
+$c-golden-alt: #b07129;
+$c-gray: #574f46;
+$c-red: #7f2628;
+$c-violet: #400080;
+
 // SASS variable overrides must be declared before loading up Active Admin's styles.
 //
-// To view the variables that Active Admin provides, take a look at
-// `app/assets/stylesheets/active_admin/mixins/_variables.css.scss` in the
-// Active Admin source.
+// Colors
+$body-background-color: $c-gray;
+$primary-color: $c-golden-alt;
+$secondary-color: $c-violet;
+$text-color: #323537;
+$link-color: #38678b;
+$section-header-text-color: $secondary-color;
+$current-menu-item-background: lighten($primary-color, 12%);
+$hover-menu-item-background: lighten($primary-color, 12%);
+$table-stripe-color: lighten($primary-color, 57%);
+$table-selected-color: #d9e4ec;
+$error-color: #932419;
+$blank-slate-primary-color: #AAA;
+$breadcrumbs-color: #8a949e;
+$breadcrumbs-separator-color: #aab2ba;
+$required-field-marker-color: #aaa;
+$form-label-color: $section-header-text-color;
+$page-header-text-color-2: white;
+
+// $secondary-gradient-start: $c-gray;
+// $secondary-gradient-stop: darken($secondary-gradient-start, 10%);
+
+// Sizes
+// $horizontal-page-margin: 30px;
+// $sidebar-width: 270px;
+// $cell-padding: 5px 10px 3px 10px;
+// $cell-horizontal-padding: 12px;
+// $section-padding: 15px;
+// $text-input-horizontal-padding: 10px;
 //
-// For example, to change the sidebar width:
-// $sidebar-width: 242px;
+// $blank-slate-border: 1px dashed #DADADA;
 
 // Active Admin's got SASS!
 @import "active_admin/mixins";
 @import "active_admin/base";
+
+#header {
+  text-shadow: darken($c-golden-alt, 30%) 0 1px 0;
+  h1 { color: $c-violet; }
+  a, a:link { color: $page-header-text-color-2; }
+}
+
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:

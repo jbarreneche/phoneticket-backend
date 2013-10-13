@@ -26,6 +26,7 @@ es:
     name: Nombre
     namespace: Sección
     password: Contraseña
+    password_confirmation: Confirmar contraseña
     phone_number: Teléfono
     purchased_seats: Asientos Comprados
     reserved_seats: Asientos Reservados
