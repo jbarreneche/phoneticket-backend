@@ -20,7 +20,13 @@ es:
     disabled: Deshabilitado
     disabled_eq: Deshabilitado
     discount_days: Días con descuento
+    discount_calculation: Tipo de descuento
+    discount_calculation_type: Tipo de descuento
+    discount_n: Nº de entradas
+    discount_x: Precio fijo
+    discount_percentage: Porcentaje de descuento
     document: D.N.I.
+    ends_on: Fecha de Fin
     first_name: Nombre
     genre: Género
     kid: Precio Menor
@@ -47,6 +53,7 @@ es:
     show_starts_at: Fecha de la función
     sign_in_count: Cantidad de ingresos
     starts_at: Fecha y Hora
+    starts_on: Fecha de Inicio
     status: Estado
     status_eq: Estado
     synopsis: Sinopsis
@@ -56,6 +63,10 @@ es:
     updated_at: Fecha de actualización
     user: Usuario
     user_email: Email del usuario
+    validation_strategy: Verificación del descuento
+    validation_type: Verificación del descuento
+    validation_code: Código de verificación
+    validation_bank: Banco del descuento
     youtube_trailer: Trailer
   activerecord:
     errors:
@@ -77,6 +88,7 @@ es:
         restrict_dependent_destroy:
           one: "No se puede eliminar porque existe una %{record} asociada"
           many: "No se puede eliminar porque existen %{record} asociadas"
+        in_future: "debe ser posterior al día de hoy"
     models:
       admin_user:
         one: Administrador
@@ -97,6 +109,9 @@ es:
       price_setting:
         one: Precio
         other: Precios
+      promotion:
+        one: Promoción
+        other: Promociones
       reservation:
         one: Reserva
         other: Reservas
@@ -130,6 +145,14 @@ es:
       carrierwave_download_error: "No se pudo descargar el archivo."
       extension_white_list_error: "No está permitido subir archivos de tipo %{extension}. Los tipos permitidos son: %{allowed_types}"
       extension_black_list_error: "No está permitido subir archivos de tipo %{extension}. Los tipos prohibidos son: %{prohibited_types}"
+  promotion:
+    discount_calculations:
+      two_for_one: 2 x 1
+      n_for_x: N x $X
+      percentage: Porcentaje de descuento
+    validation_strategies:
+      code: Validación por Código
+      bank: Validación de Tarjeta de Banco
   reservation:
     statuses:
       pending: "Pendiente"
