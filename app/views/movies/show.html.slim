@@ -1,0 +1,29 @@
+- content_for(:title, "Phoneticket - #{@movie.title}")
+
+.row
+  .small-12.large-12.columns
+    h1= @movie.title
+
+  .small-6.large-4.columns
+    .media-box= image_tag @movie.cover.url
+
+  .small-6.large-4.push-4.columns
+    dl
+      dt Género
+      dd= human_genre @movie.genre
+      dt Director
+      dd= @movie.director
+      dt Actores
+      dd= @movie.cast.to_sentence
+      dt Clasificación
+      dd= @movie.audience_rating
+      - if @movie.youtube_trailer
+        dt Trailer
+        dd= link_to @movie.title, @movie.youtube_trailer, target: '_blank'
+
+  .small-12.large-4.pull-4.columns
+    = simple_format @movie.synopsis
+
+.row
+  .small-12.large-12.columns
+    = render 'shared/cta_download_app'

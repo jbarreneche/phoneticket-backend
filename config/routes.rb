@@ -2,8 +2,13 @@ PhoneTicket::Application.routes.draw do
   devise_for :users,
     only: [:confirmation],
     controllers: { confirmations: "confirmations" }
+
   get "/users/confirmed", to: "thankyou#page", defaults: { page: "user_confirmed" }
   get "/users/confirmation/sent", to: "thankyou#page", defaults: { page: "users_confirmation_sent" }
+
+  resources :movies, only: [:show]
+  resources :reservations, only: [:show]
+  resources :purchases, only: [:show]
 
   namespace :api do
     resources :users, only: [:create] do

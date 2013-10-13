@@ -2,6 +2,7 @@ json.(@movie, :id, :title, :synopsis, :youtube_trailer, :director, :audience_rat
 json.cast @movie.cast.to_sentence
 json.genre human_genre(@movie.genre)
 json.cover_url path_with_host(@movie.cover.url(:android))
+json.share_url movie_url(@movie)
 
 shows_by_theatres = @shows.group_by do |show|
   show.room.theatre
