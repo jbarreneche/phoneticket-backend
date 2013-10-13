@@ -1,4 +1,13 @@
 # encoding: UTF-8
+prices = PriceSetting.where(name: "Normal").first_or_initialize
+prices.assign_attributes adult: 30, kid: 15,
+        discount_days: %w[wednesdays], adult_with_discount: 15, kid_with_discount: 10
+prices.save(validate: false)
+
+prices = PriceSetting.where(name: "3D").first_or_initialize
+prices.assign_attributes adult: 60, kid: 45,
+        discount_days: %w[wednesdays], adult_with_discount: 45, kid_with_discount: 30
+prices.save(validate: false)
 
 theatres = {
   "Cine 1" => {
@@ -119,3 +128,4 @@ Show.all.each do |show|
     generate_reservation(show)
   end
 end
+

@@ -130,6 +130,14 @@ es:
     shapes:
       small: Chica
       standard: Normal
+  weekdays:
+    mondays: Lunes
+    tuesdays: Martes
+    wednesdays: Miércoles
+    thursdays: Jueves
+    fridays: Viernes
+    saturdays: Sábados
+    sundays: Domingos
   values:
     bool:
       'true': "Sí"

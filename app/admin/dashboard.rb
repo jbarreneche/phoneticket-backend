@@ -12,22 +12,41 @@ ActiveAdmin.register_page "Dashboard" do
 
     # Here is an example of a simple dashboard with columns and panels.
     #
-    # columns do
-    #   column do
-    #     panel "Recent Posts" do
-    #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
-    #         end
-    #       end
-    #     end
-    #   end
+    columns do
+      column do
+        panel "Precios" do
+          table do
+            thead do
+              tr do
+                th
+                th "Adulto"
+                th "Niño"
+                th "Días c/descuento"
+                th "Adulto c/descuento"
+                th "Niño c/descuento"
+              end
+            end
+            tbody do
+              PriceSetting.all.map do |price_setting|
+                tr do
+                  td { link_to price_setting.name, edit_admin_price_setting_path(price_setting) }
+                  td number_to_currency(price_setting.adult)
+                  td number_to_currency(price_setting.kid)
+                  td human_weekdays(price_setting.discount_days).to_sentence
+                  td number_to_currency(price_setting.adult_with_discount)
+                  td number_to_currency(price_setting.kid_with_discount)
+                end
+              end
+            end
+          end
+        end
+      end
 
     #   column do
     #     panel "Info" do
     #       para "Welcome to ActiveAdmin."
     #     end
     #   end
-    # end
+    end
   end # content
 end
