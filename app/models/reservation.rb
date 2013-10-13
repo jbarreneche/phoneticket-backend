@@ -4,7 +4,8 @@ class Reservation < ActiveRecord::Base
   belongs_to :purchase
   has_many :seats, as: :taken_by
 
-  scope :still_not_finished, ->(date = Date.current) { joins(:show).references(:show).where(["shows.starts_at > ?", date]) }
+  scope :pending, -> { where(status: STATUS_PENDING) }
+  scope :still_not_finished, ->(date = Date.current) { pending.joins(:show).references(:show).where(["shows.starts_at > ?", date]) }
 
   STATUSES =
     (STATUS_PENDING, STATUS_CANCELED, STATUS_COMPLETED = %w[pending canceled completed])
