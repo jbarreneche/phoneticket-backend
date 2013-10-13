@@ -32,6 +32,7 @@ es:
     namespace: Sección
     password: Contraseña
     phone_number: Teléfono
+    price_setting: Precio
     purchased_seats: Asientos Comprados
     reserved_seats: Asientos Reservados
     resource_id: Recurso

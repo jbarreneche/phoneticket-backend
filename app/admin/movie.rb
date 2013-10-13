@@ -32,6 +32,7 @@ ActiveAdmin.register Movie do
         human_genre(movie.genre)
       end
       row :audience_rating
+      row(:price_setting) { movie.price_setting.try(:name) }
       row :youtube_trailer do
         if movie.youtube_trailer?
           link_to movie.youtube_trailer
@@ -59,6 +60,7 @@ ActiveAdmin.register Movie do
       f.input :audience_rating, collection: audience_ratings_collection
       f.input :genre, collection: genres_collection
       f.input :cover
+      f.input :price_setting
     end
 
     f.buttons
@@ -70,7 +72,8 @@ ActiveAdmin.register Movie do
     def permitted_params
       params.permit movie: [
         :title, :synopsis, :youtube_trailer, :cover,
-        :director, :cast_raw, :audience_rating, :genre
+        :director, :cast_raw, :audience_rating, :genre,
+        :price_setting_id
       ]
     end
 

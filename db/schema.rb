@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131012230900) do
+ActiveRecord::Schema.define(version: 20131013115455) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -58,7 +58,10 @@ ActiveRecord::Schema.define(version: 20131012230900) do
     t.string   "country"
     t.string   "genre"
     t.string   "audience_rating"
+    t.integer  "price_setting_id"
   end
+
+  add_index "movies", ["price_setting_id"], name: "index_movies_on_price_setting_id"
 
   create_table "price_settings", force: true do |t|
     t.string   "name"
