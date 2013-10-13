@@ -4,6 +4,7 @@
 - user  = @purchase.user
 - movie = show.movie
 - content_for(:title, "Phoneticket - #{movie.title}")
+- seats_count = @purchase.seats.count
 
 .row
   .small-12.large-12.columns
@@ -11,8 +12,8 @@
       h2(style="text-align: center")
         span.highlight= user.first_name
         |  compró&nbsp;
-        = @purchase.seats.count
-        |  entradas para&nbsp;
+        = "#{seats_count} #{t("ticket", count: seats_count)}"
+        |  para&nbsp;
         span.highlight= movie.title
       p(style="text-align: center")
         | Para el día&nbsp;
