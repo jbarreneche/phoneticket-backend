@@ -1,5 +1,7 @@
 es:
   attributes:
+    adult: Precio Adulto
+    adult_with_discount: Adulto c/descuento
     address: Dirección
     audience_rating: Clasificación
     author: Autor
@@ -17,9 +19,12 @@ es:
     date_of_birth: Fecha de nacimiento
     disabled: Deshabilitado
     disabled_eq: Deshabilitado
+    discount_days: Días con descuento
     document: D.N.I.
     first_name: Nombre
     genre: Género
+    kid: Precio Menor
+    kid_with_discount: Menor c/descuento
     last_name: Apellido
     movie: Película
     movie_id: Película
@@ -88,6 +93,9 @@ es:
         one: Sala
         other: Salas
       shows: Funciones
+      price_setting:
+        one: Precio
+        other: Precios
       reservation:
         one: Reserva
         other: Reservas

@@ -1,6 +1,16 @@
 ActiveAdmin.register PriceSetting do
   menu false
+  config.filters = false
   actions :edit, :update, :index
+
+  index do
+    column :name
+    column(:adult) {|price| number_to_currency(price.adult) }
+    column(:kid) {|price| number_to_currency(price.kid) }
+    column(:discount_days) {|price| human_weekdays(price.discount_days).to_sentence }
+    column(:adult_with_discount) {|price| number_to_currency(price.adult_with_discount) }
+    column(:kid_with_discount) {|price| number_to_currency(price.kid_with_discount) }
+  end
 
   form do |f|
     f.inputs f.object.name do

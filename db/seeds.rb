@@ -6,7 +6,7 @@ prices.save(validate: false)
 
 prices = PriceSetting.where(name: "3D").first_or_initialize
 prices.assign_attributes adult: 60, kid: 45,
-        discount_days: %w[wednesdays], adult_with_discount: 45, kid_with_discount: 30
+        discount_days: [], adult_with_discount: nil, kid_with_discount: nil
 prices.save(validate: false)
 
 theatres = {
