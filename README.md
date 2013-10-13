@@ -378,6 +378,10 @@ BODY:
             "show": {
                 "id": 51,
                 "starts_at": "2013-10-17T19:00:00.000Z",
+                "theatre": {
+                  "id": 3,
+                  "name": "Cine 3"
+                },
                 "room": {
                     "id": 6,
                     "theatre_id": 3,
@@ -424,6 +428,10 @@ BODY:
             "show": {
                 "id": 49,
                 "starts_at": "2013-10-17T23:15:00.000Z",
+                "theatre": {
+                  "id": 2,
+                  "name": "Cine 2"
+                },
                 "room": {
                     "id": 4,
                     "theatre_id": 2,
