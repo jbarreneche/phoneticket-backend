@@ -1,0 +1,30 @@
+- show  = @reservation.show
+- room  = show.room
+- theatre = room.theatre
+- user  = @reservation.user
+- movie = show.movie
+- content_for(:title, "Phoneticket - #{movie.title}")
+
+.row
+  .small-12.large-12.columns
+    .panel(style="margin: 2em")
+      h2(style="text-align: center")
+        span.highlight= user.first_name
+        |  reservó&nbsp;
+        = @reservation.seats.count
+        |  entradas para&nbsp;
+        span.highlight= movie.title
+      p(style="text-align: center")
+        | Para el día&nbsp;
+        strong= l show.starts_at, format: :function
+        | en&nbsp;
+        strong= theatre.name
+        em= " (#{theatre.address}) "
+        strong= room.name
+
+.row
+  = render 'movies/information_columns', movie: movie
+
+.row
+  .small-12.large-12.columns
+    = render 'shared/cta_download_app'
