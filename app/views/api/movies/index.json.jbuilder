@@ -4,4 +4,5 @@ json.array! @movies do |movie|
   json.genre human_genre(movie.genre)
   json.cover_url path_with_host(movie.cover.url(:android))
   json.resource_url api_movie_url(movie)
+  json.share_url movie_url(movie)
 end
