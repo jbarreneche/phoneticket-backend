@@ -1,5 +1,7 @@
 class Movie < ActiveRecord::Base
   has_many :shows, dependent: :restrict_with_error
+  belongs_to :price_setting
+
   mount_uploader :cover, CoverUploader
   serialize :cast, Array
 
@@ -7,7 +9,7 @@ class Movie < ActiveRecord::Base
     drama family horror musical mystery romance sci-fi thriller]
   AUDIENCE_RATINGS = %w[ATP PG-13 PG-16 PG-18]
 
-  validates_presence_of :title, :synopsis, :cast, :director, :cover
+  validates_presence_of :title, :synopsis, :cast, :director, :cover, :price_setting
 
   validates :genre, inclusion: GENRES
   validates :audience_rating, inclusion: AUDIENCE_RATINGS

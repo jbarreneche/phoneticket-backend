@@ -1,4 +1,13 @@
 # encoding: UTF-8
+price_std = PriceSetting.where(name: "Normal").first_or_initialize
+price_std.assign_attributes adult: 30, kid: 15,
+        discount_days: %w[wednesdays], adult_with_discount: 15, kid_with_discount: 10
+price_std.save(validate: false)
+
+price_3d = PriceSetting.where(name: "3D").first_or_initialize
+price_3d.assign_attributes adult: 60, kid: 45,
+        discount_days: [], adult_with_discount: nil, kid_with_discount: nil
+price_3d.save(validate: false)
 
 theatres = {
   "Cine 1" => {
@@ -43,7 +52,7 @@ rooms = [theatre_1, theatre_2, theatre_3].flat_map do |theatre|
   [room_1, room_2]
 end
 
-matrix = Movie.where(title: "Matrix").first_or_initialize
+matrix = Movie.where(title: "Matrix 3D").first_or_initialize
 matrix.assign_attributes(
   youtube_trailer: "http://www.youtube.com/watch?v=m8e-FF8MsqU",
   director: "Hermanos Wachowski",
@@ -51,6 +60,7 @@ matrix.assign_attributes(
   country: "Estados Unidos",
   genre: "sci-fi",
   audience_rating: "PG-13",
+  price_setting: price_3d,
   synopsis: <<-SYN.strip_heredoc
   ¿Es el mundo lo que parece? Thomas Anderson (Keanu Reeves), programador de una importante empresa de software y asaltador informático de alias Neo, averiguará que no. Con él contactará un extraño grupo encabezado por Morfeo (Lawrence Fishburne), quien le mostrará la verdadera realidad que se esconde tras lo aparente: un mundo dominado por las máquinas, las cuales esclavizan a la Humanidad para utilizar nuestros cuerpos como simple fuente de energía. ¿Pero, y nuestra mente, dónde se encuentra entonces? la respuesta está en Matrix.
   SYN
@@ -65,11 +75,14 @@ planes.assign_attributes(
   country: "Estados Unidos",
   genre: "animation",
   audience_rating: "ATP",
+  price_setting: price_std,
   synopsis: <<-SYN.strip_heredoc
   Desde las alturas del mundo de “Cars” llega la película de Disney “Aviones”. La nueva película de animación en 3D llena de acción y aventuras, protagonizada por Dusty (voz de Dane Cook), un avión que sueña con participar en una competición aérea de altos vuelos. Pero Dusty no fue precisamente construido para competir y resulta que... ¡tiene miedo a las alturas! Así que, recurre a un experimentado aviador naval que le ayuda a clasificarse para retar al vigente campeón del circuito de carreras. Dusty demostrará su valor para alcanzar alturas inimaginables y enseñará al mundo lo que hay que hacer para levantar el vuelo. La película de Disney “Aviones” despega en agosto de 2013 y estará disponible en Disney Digital 3D™ en una selección de cines.
   SYN
 )
 planes.save(validate: false)
+
+Movie.where(price_setting_id: nil).update_all(price_setting_id: price_std.id)
 
 matrix_rooms = rooms[0...3]
 planes_rooms = rooms[3...6]
@@ -119,3 +132,4 @@ Show.all.each do |show|
     generate_reservation(show)
   end
 end
+
