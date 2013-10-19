@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131013115455) do
+ActiveRecord::Schema.define(version: 20131013181644) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -70,6 +70,21 @@ ActiveRecord::Schema.define(version: 20131013115455) do
     t.text     "discount_days"
     t.integer  "adult_with_discount"
     t.integer  "kid_with_discount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "promotions", force: true do |t|
+    t.string   "name"
+    t.date     "starts_on"
+    t.date     "ends_on"
+    t.string   "discount_calculation_type"
+    t.integer  "discount_n"
+    t.integer  "discount_x"
+    t.integer  "discount_percentage"
+    t.string   "validation_type"
+    t.string   "validation_code"
+    t.string   "validation_bank"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
