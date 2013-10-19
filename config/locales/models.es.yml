@@ -37,6 +37,7 @@ es:
     name: Nombre
     namespace: Sección
     password: Contraseña
+    password_confirmation: Confirmar contraseña
     phone_number: Teléfono
     price_setting: Precio
     purchased_seats: Asientos Comprados

@@ -10,8 +10,7 @@ ActiveAdmin.register AdminUser do
   filter :email
 
   show do |user|
-    attributes_table *[:id, :email, :sign_in_count, :current_sign_in_at, :created_at, :updated_at]
-    active_admin_comments
+    attributes_table(*[:id, :email, :sign_in_count, :current_sign_in_at, :created_at, :updated_at])
   end
 
   form do |f|
