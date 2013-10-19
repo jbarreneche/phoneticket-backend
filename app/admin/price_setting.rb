@@ -10,6 +10,7 @@ ActiveAdmin.register PriceSetting do
     column(:discount_days) {|price| human_weekdays(price.discount_days).to_sentence }
     column(:adult_with_discount) {|price| number_to_currency(price.adult_with_discount) }
     column(:kid_with_discount) {|price| number_to_currency(price.kid_with_discount) }
+    default_actions
   end
 
   form do |f|
