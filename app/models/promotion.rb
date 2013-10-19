@@ -37,7 +37,7 @@ class Promotion < ActiveRecord::Base
     return unless discount_calculation
 
     discount_calculation.each_missing_field do |missing|
-      errors.add(missing, :invalid)
+      errors.add(missing, :blank)
     end
   end
 
@@ -45,7 +45,7 @@ class Promotion < ActiveRecord::Base
     return unless validation_strategy
 
     validation_strategy.each_missing_field do |missing|
-      errors.add(missing, :invalid)
+      errors.add(missing, :blank)
     end
   end
 
