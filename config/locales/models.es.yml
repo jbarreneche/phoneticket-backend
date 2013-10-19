@@ -139,6 +139,9 @@ es:
     shapes:
       small: Chica
       standard: Normal
+  ticket:
+    one: entrada
+    other: entradas
   weekdays:
     mondays: Lunes
     tuesdays: Martes

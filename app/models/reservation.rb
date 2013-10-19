@@ -4,6 +4,7 @@ class Reservation < ActiveRecord::Base
   belongs_to :purchase
   has_many :seats, as: :taken_by
 
+  scope :not_canceled, -> { where.not(status: STATUS_CANCELED) }
   scope :pending, -> { where(status: STATUS_PENDING) }
   scope :still_not_finished, ->(date = Date.current) { pending.joins(:show).references(:show).where(["shows.starts_at > ?", date]) }
 

@@ -1,2 +1,4 @@
 json.(show, :id, :starts_at, :room)
-json.movie show.movie
+json.movie do
+  json.partial! show.movie
+end

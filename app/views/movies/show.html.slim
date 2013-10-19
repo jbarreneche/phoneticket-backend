@@ -1,0 +1,12 @@
+- content_for(:title, "Phoneticket - #{@movie.title}")
+
+.row
+  .small-12.large-12.columns
+    h1.highlight= @movie.title
+
+.row
+  = render 'movies/information_columns', movie: @movie
+
+.row
+  .small-12.large-12.columns
+    = render 'shared/cta_download_app'
