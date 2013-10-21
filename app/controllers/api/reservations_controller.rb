@@ -5,7 +5,7 @@ class Api::ReservationsController < Api::BaseController
 
     @reservation.cancel!
 
-    head :ok
+    render json: {}
   end
 
 end
