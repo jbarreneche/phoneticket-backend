@@ -531,6 +531,47 @@ BODY:
         "b-5"
       ]
     }
-  }
+  },
+  "prices": {
+    "adult": 20,
+    "kid": 10
+  },
+  "promotions": [
+    {
+      "id": 1,
+      "name": "La nación",
+      "discount_calculation_type": "percentage",
+      "validation_type": "bank",
+      "discount_calculation": {
+        "percentage": 20
+      },
+      "validation": {
+        "bank": "Galicia"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Clarin 365",
+      "discount_calculation_type": "two_for_one",
+      "validation_type": "code",
+      "discount_calculation": {},
+      "validation": {
+        "code": "ABC"
+      }
+    },
+    {
+      "id": 3,
+      "name": "El Argentino",
+      "discount_calculation_type": "n_for_x",
+      "validation_type": "bank",
+      "discount_calculation": {
+        "n": 4,
+        "x": 50
+      },
+      "validation": {
+        "bank": "Santander Río"
+      }
+    }
+  ]
 }
 ```
