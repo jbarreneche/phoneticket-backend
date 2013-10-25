@@ -1,5 +1,7 @@
 reserved_seat_codes = @show.seats.pluck(:code)
 
+json.partial! @show
+
 json.status do |json|
   @show.room.room_shape.each_body do |body|
     json.set! body.name do
@@ -13,3 +15,7 @@ json.status do |json|
     end
   end
 end
+
+json.prices @show.prices
+
+json.promotions @show.promotions, partial: "api/promotions/promotion", as: :promotion

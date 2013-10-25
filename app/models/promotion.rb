@@ -19,6 +19,16 @@ class Promotion < ActiveRecord::Base
       %w[validation_type name], %w[validation_code code], %w[validation_bank bank]
     ]
 
+  def self.enabled_on(date)
+    starts_on_col = arel_table[:starts_on]
+    ends_on_col   = arel_table[:ends_on]
+    where(starts_on_col.lteq(date).and(ends_on_col.gteq(date)))
+  end
+
+  def self.enabled_for_show(show)
+    enabled_on(show.starts_at.to_date)
+  end
+
   private
 
   def ends_in_future
