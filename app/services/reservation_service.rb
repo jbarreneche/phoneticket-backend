@@ -19,6 +19,14 @@ class ReservationService
     end
 
     reservation = Reservation.new(user: @user, show: @show) do |res|
+
+      if options[:promotion_id].present?
+        res.promotion_code   = options[:promotion_code]
+        res.bank_card_number = options[:bank_card_number]
+        res.promotion  = @show.promotions.find(options[:promotion_id])
+      end
+      res.kids_count = options.fetch(:kids_count, 0)
+
       seats.each do |place|
         res.seats.build(code: place, status: Seat::STATUS_RESERVED, taken_by: @user, show: @show)
       end

@@ -41,6 +41,7 @@ es:
     password_confirmation: Confirmar contraseña
     phone_number: Teléfono
     price_setting: Precio
+    promotion: Promoción
     purchased_seats: Asientos Comprados
     reserved_seats: Asientos Reservados
     resource_id: Recurso

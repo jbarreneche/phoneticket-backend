@@ -69,7 +69,7 @@ class Shape
   end
 
   def void_places
-    @places ||= bodies.inject(Set.new) {|set, body| set + body.void_places }
+    @void_places ||= bodies.inject(Set.new) {|set, body| set + body.void_places }
   end
 
   def places

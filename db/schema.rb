@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131026184439) do
+ActiveRecord::Schema.define(version: 20131026212937) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -105,9 +105,14 @@ ActiveRecord::Schema.define(version: 20131026184439) do
     t.integer  "purchase_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status",      default: "pending"
+    t.string   "status",           default: "pending"
+    t.integer  "kids_count"
+    t.integer  "promotion_id"
+    t.string   "promotion_code"
+    t.string   "bank_card_number"
   end
 
+  add_index "reservations", ["promotion_id"], name: "index_reservations_on_promotion_id"
   add_index "reservations", ["purchase_id"], name: "index_reservations_on_purchase_id"
   add_index "reservations", ["show_id"], name: "index_reservations_on_show_id"
   add_index "reservations", ["user_id", "status"], name: "index_reservations_on_user_id_and_status"

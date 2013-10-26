@@ -1,23 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
+bank:
   starts_on: 2013-10-13
-  ends_on: 2013-10-13
-  discount_calculation_type: MyString
-  discount_n: 1
-  discount_x: 1
-  discount_percentage: 1
-  validation_type: MyString
-  validation_code: MyString
+  ends_on: 2014-10-13
+  discount_calculation_type: two_for_one
+  validation_type: bank
   validation_bank: MyString
 
-two:
+code:
   starts_on: 2013-10-13
-  ends_on: 2013-10-13
-  discount_calculation_type: MyString
-  discount_n: 1
-  discount_x: 1
-  discount_percentage: 1
-  validation_type: MyString
-  validation_code: MyString
-  validation_bank: MyString
+  ends_on: 2014-10-13
+  discount_calculation_type: two_for_one
+  validation_type: code
+  validation_code: some-code

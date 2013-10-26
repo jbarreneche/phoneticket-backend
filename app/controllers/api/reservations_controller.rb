@@ -44,7 +44,9 @@ class Api::ReservationsController < Api::BaseController
   end
 
   def allowed_reservation_params
-    params.permit(:seats_count, seats: [])
+    params.permit(:seats_count,
+      :promotion_id, :promotion_code, :bank_card_number,
+      seats: [])
   end
 
   def reservation_service(show)

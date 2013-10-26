@@ -20,6 +20,10 @@ class Show < ActiveRecord::Base
     @room_status ||= RoomStatus.new(room, self.seats)
   end
 
+  def promotions
+    Promotion.all
+  end
+
   def available_places
     room_shape.places - taken_places
   end

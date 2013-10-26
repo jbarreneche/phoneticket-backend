@@ -19,6 +19,10 @@ class Promotion < ActiveRecord::Base
       %w[validation_type name], %w[validation_code code], %w[validation_bank bank]
     ]
 
+  def validate(promotionable)
+    validation_strategy.validate(promotionable)
+  end
+
   private
 
   def ends_in_future
