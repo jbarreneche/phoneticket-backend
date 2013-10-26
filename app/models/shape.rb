@@ -66,6 +66,10 @@ class Shape
     end
   end
 
+  def void_places
+    @places ||= bodies.collect_concat(&:void_places)
+  end
+
   def places
     @places ||= bodies.collect_concat(&:places)
   end
