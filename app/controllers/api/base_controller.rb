@@ -4,4 +4,15 @@ class Api::BaseController < ApplicationController
 
   respond_to :json, :xml
 
+  #
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    entity = (exception.message.match(/find (\w+)/).try(:[], 1) || "resource").underscore
+
+    render json: {
+      errors: {
+        entity => "Inexistente"
+      }
+    }, status: :not_found
+  end
+
 end
