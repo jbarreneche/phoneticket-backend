@@ -1,3 +1,5 @@
+require 'set'
+
 class Shape
   CONFIGS = {
     "standard" => { # Seats count = 46
@@ -67,11 +69,11 @@ class Shape
   end
 
   def void_places
-    @places ||= bodies.collect_concat(&:void_places)
+    @places ||= bodies.inject(Set.new) {|set, body| set + body.void_places }
   end
 
   def places
-    @places ||= bodies.collect_concat(&:places)
+    @places ||= bodies.inject(Set.new) {|set, body| set + body.places }
   end
 
   class Body
@@ -81,7 +83,7 @@ class Shape
 
       @rows        = config.fetch("rows")
       @columns     = config.fetch("columns")
-      @void_places = config.fetch("void_places").map do |(row, column)|
+      @void_places = Set.new config.fetch("void_places").map do |(row, column)|
         seat_code(row, column)
       end
     end
@@ -101,9 +103,9 @@ class Shape
     private
 
     def body_matrix
-      rows.product(columns).map do |(row, column)|
+      @body_matrix ||= Set.new(rows.product(columns).map do |(row, column)|
         seat_code(row, column)
-      end
+      end)
     end
 
     def seat_code(row, column)
