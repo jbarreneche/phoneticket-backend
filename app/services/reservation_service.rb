@@ -2,7 +2,6 @@ require 'service_response'
 
 class ReservationService
   InvalidSeats = ArgumentError
-  NotEnoughEmptySeats = ArgumentError
 
   def initialize(user, show)
     @user = user
@@ -40,6 +39,8 @@ class ReservationService
 
     ReservationResponse.new(reservation)
   end
+
+  private
 
   def validate_seats!(places)
     places.all? do |place|

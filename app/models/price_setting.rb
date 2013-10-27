@@ -10,6 +10,10 @@ class PriceSetting < ActiveRecord::Base
     super(discounts.reject(&:blank?))
   end
 
+  def self.total_price_for(reservation)
+    30
+  end
+
   private
 
   def has_a_discount_day?

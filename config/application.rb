@@ -22,6 +22,7 @@ module PhoneTicket
     config.i18n.locale = :es
 
     config.autoload_paths << Rails.root + "lib" + "services"
+    config.autoload_paths << Rails.root + "lib" + "payments"
     config.autoload_paths << Rails.root + "lib" + "mail_previews" if Rails.env.development?
 
     config.to_prepare do
