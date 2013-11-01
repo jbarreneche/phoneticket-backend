@@ -2,21 +2,11 @@ class Api::PurchasesController < Api::BaseController
   # before_filter :ensure_user
 
   def create
-    if params[:reservation_id]
+    response = if params[:reservation_id]
       purchase_from_reservation
     else
-      # purchase_from_scratch
+      purchase_from_scratch
     end
-  end
-
-  private
-
-  def purchase_from_reservation
-    reservation = Reservation.find(params[:reservation_id])
-
-    service = purchase_reservation_service(reservation)
-
-    response = service.call allowed_payment_params
 
     if response.successful?
       render response.purchase
@@ -29,12 +19,38 @@ class Api::PurchasesController < Api::BaseController
 
   private
 
-  def allowed_payment_params
-    params.permit(:card_number, :card_verification_code, :card_owner_name)
+  def purchase_from_reservation
+    reservation = Reservation.find(params[:reservation_id])
+
+    service = purchase_reservation_service(reservation)
+
+    service.call allowed_purchase_params
+  end
+
+  def purchase_from_scratch
+    ensure_user
+
+    show = Show.lock.find(params[:show_id])
+
+    service = purchase_service(show)
+
+    service.call allowed_purchase_params
+  end
+
+  def allowed_purchase_params
+    params.permit(:seats_count,
+      :promotion_id, :promotion_code, :bank_card_number,
+      :card_number, :card_verification_code, :card_owner_name,
+      seats: []
+    )
   end
 
   def purchase_reservation_service(reservation)
     PurchaseReservationService.new(reservation)
+  end
+
+  def purchase_service(show)
+    PurchaseService.new(current_user, show)
   end
 
 end

@@ -9,7 +9,7 @@ class ReservationService
   end
 
   def call(options)
-    if @show.numbered_seats
+    if @show.numbered_seats?
       seats       = validate_seats! options.fetch(:seats)
       seats_count = seats.size
     else

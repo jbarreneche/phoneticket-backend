@@ -15,4 +15,14 @@ class Api::BaseController < ApplicationController
     }, status: :not_found
   end
 
+  private
+
+  def ensure_user
+    raise ActiveRecord::RecordNotFound, "Couldn't find User" unless current_user
+  end
+
+  def current_user
+    @current_user ||= User.find_by_email params[:email]
+  end
+
 end
