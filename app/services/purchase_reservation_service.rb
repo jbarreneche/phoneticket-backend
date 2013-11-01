@@ -18,9 +18,9 @@ class PurchaseReservationService
     purchase = Purchase.from_reservation(@reservation)
 
     if purchase_attributes[:promotion_id].present?
-      purchase.promotion_code   = purchase_attributes[:promotion_code]
-      purchase.bank_card_number = purchase_attributes[:bank_card_number]
-      purchase.promotion  = @show.promotions.find(purchase_attributes[:promotion_id])
+      purchase.promotion_code = purchase_attributes[:promotion_code]
+      purchase.card_number    = card_number
+      purchase.promotion      = @show.promotions.find(purchase_attributes[:promotion_id])
     end
     purchase.kids_count = purchase_attributes.fetch(:kids_count, 0)
 

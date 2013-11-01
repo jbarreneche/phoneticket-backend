@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131027002612) do
+ActiveRecord::Schema.define(version: 20131101192800) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 20131027002612) do
     t.integer  "kids_count"
     t.integer  "promotion_id"
     t.string   "promotion_code"
-    t.string   "bank_card_number"
+    t.string   "card_number"
     t.string   "payment_token"
     t.string   "payment_status"
     t.integer  "total_cents"

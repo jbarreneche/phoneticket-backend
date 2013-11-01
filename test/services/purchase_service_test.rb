@@ -83,16 +83,16 @@ describe PurchaseReservationService do
 
     it "fails with an invalid bank card number" do
       response = service.call valid_purchase_params.merge(
-        promotion_id: bank_promotion.id, bank_card_number: "9invalid"
+        promotion_id: bank_promotion.id, card_number: "9invalid"
       )
 
       response.wont_be :successful?
-      response.errors[:bank_card_number].wont_be_empty
+      response.errors[:card_number].wont_be_empty
     end
 
     it "succeeds with an valid bank card number" do
       response = service.call valid_purchase_params.merge(
-        promotion_id: bank_promotion.id, bank_card_number: "valid"
+        promotion_id: bank_promotion.id, card_number: "valid"
       )
 
       response.must_be :successful?

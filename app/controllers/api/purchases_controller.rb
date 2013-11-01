@@ -46,7 +46,7 @@ class Api::PurchasesController < Api::BaseController
 
   def allowed_purchase_params
     params.permit(:seats_count,
-      :promotion_id, :promotion_code, :bank_card_number,
+      :promotion_id, :promotion_code,
       :card_number, :card_verification_code, :card_owner_name,
       seats: []
     )
