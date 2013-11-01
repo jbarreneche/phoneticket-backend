@@ -15,6 +15,13 @@ class Api::PurchasesController < Api::BaseController
 
       render 'purchase_with_errors', status: :unprocessable_entity
     end
+  rescue ReservationService::InvalidSeats
+    # XXX: Decide if should improve
+    render json: {
+      errors: {
+        seats: ["Alguno de los asientos enviados no existe"]
+      }
+    }, status: :bad_request
   end
 
   private
