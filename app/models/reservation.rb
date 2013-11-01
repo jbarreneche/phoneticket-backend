@@ -29,7 +29,7 @@ class Reservation < ActiveRecord::Base
   private
 
   def on_time_for_show
-    errors.add(:show_id, :time_expired) unless show.on_time_for_reservation?
+    errors.add(:show_id, :reservation_time_expired) unless show.on_time_for_reservation?
   end
 
 end

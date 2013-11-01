@@ -9,6 +9,7 @@ class Purchase < ActiveRecord::Base
 
   validate :payment_status_not_rejected
   validate :check_promotion
+  validate :show_hasnt_started
 
   def self.from_reservation(reservation)
     new do |purchase|
@@ -33,4 +34,7 @@ class Purchase < ActiveRecord::Base
     promotion.validate(self) if promotion.present?
   end
 
+  def show_hasnt_started
+    errors.add(:show_id, :purchase_time_expired) unless show.starts_at.future?
+  end
 end

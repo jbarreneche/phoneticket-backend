@@ -102,4 +102,17 @@ describe PurchaseReservationService do
 
   end
 
+  describe "After the show started" do
+    let(:show)  { shows(:ExpiringShow) }
+
+    it "fails to take purchases" do
+      show.starts_at = 1.second.ago
+      response = service.call valid_payment_information.merge(seats_count: 1)
+
+      response.wont_be :successful?
+      response.errors[:show_id].wont_be_empty
+    end
+
+  end
+
 end
