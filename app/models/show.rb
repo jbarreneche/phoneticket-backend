@@ -10,7 +10,8 @@ class Show < ActiveRecord::Base
   delegate :available_seats_count, :reserved_seats, :purchased_seats, to: :room_status
   delegate :room_shape, to: :room
 
-  scope :active, -> { where(["starts_at > ?", Time.current]) }
+  scope :active,   ->(now = Time.current) { where(["starts_at > ?", now]) }
+  scope :inactive, ->(now = Time.current) { where(["starts_at < ?", now]) }
 
   def name
     "#{movie.title} - #{room.to_label}"

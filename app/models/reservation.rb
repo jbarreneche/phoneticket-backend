@@ -8,6 +8,7 @@ class Reservation < ActiveRecord::Base
   scope :not_purchased, -> { where.not(status: STATUS_COMPLETED) }
   scope :pending, -> { where(status: STATUS_PENDING) }
   scope :still_not_finished, ->(date = Date.current) { pending.joins(:show).references(:show).where(["shows.starts_at > ?", date]) }
+  scope :with_show_before, ->(now = Time.current) { joins(:show).includes(:show).merge(Show.inactive(now)) }
 
   validate :on_time_for_show, on: :create
 

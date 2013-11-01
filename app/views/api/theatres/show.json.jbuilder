@@ -8,7 +8,5 @@ end
 json.movies shows_by_movies.keys do |movie|
   json.partial! movie
 
-  json.shows shows_by_movies[movie] do |show|
-    json.(show, :id, :starts_at, :room)
-  end
+  json.shows shows_by_movies[movie], partial: "api/shows/show", as: :show
 end

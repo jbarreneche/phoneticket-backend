@@ -8,7 +8,5 @@ json.theatres shows_by_theatres.keys do |theatre|
   json.(theatre, :id, :name, :latitude, :longitude, :address)
   json.photo_url path_with_host(theatre.photo.url(:android))
 
-  json.shows shows_by_theatres[theatre] do |show|
-    json.(show, :id, :starts_at, :room)
-  end
+  json.shows shows_by_theatres[theatre], partial: "api/shows/show", as: :show
 end
