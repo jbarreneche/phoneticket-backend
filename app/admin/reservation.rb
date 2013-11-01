@@ -38,7 +38,6 @@ ActiveAdmin.register Reservation do
         human_reservation_status(reservation.status)
       end
       row :show
-      row :promotion
       row :starts_at do
         l reservation.show.starts_at, format: :short
       end
