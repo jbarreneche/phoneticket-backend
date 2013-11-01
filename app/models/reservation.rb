@@ -1,7 +1,6 @@
 class Reservation < ActiveRecord::Base
   belongs_to :show, touch: true
   belongs_to :user
-  belongs_to :promotion
   has_one :purchase, inverse_of: :reservation
   has_many :seats, as: :taken_by
 
@@ -9,8 +8,6 @@ class Reservation < ActiveRecord::Base
   scope :not_purchased, -> { where.not(status: STATUS_COMPLETED) }
   scope :pending, -> { where(status: STATUS_PENDING) }
   scope :still_not_finished, ->(date = Date.current) { pending.joins(:show).references(:show).where(["shows.starts_at > ?", date]) }
-
-  validate :check_promotion
 
   STATUSES =
     (STATUS_PENDING, STATUS_CANCELED, STATUS_COMPLETED = %w[pending canceled completed])
@@ -25,12 +22,6 @@ class Reservation < ActiveRecord::Base
 
   def cancellable?
     status == STATUS_PENDING
-  end
-
-  private
-
-  def check_promotion
-    promotion.validate(self) if promotion.present?
   end
 
 end

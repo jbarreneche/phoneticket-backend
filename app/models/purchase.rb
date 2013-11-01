@@ -2,11 +2,13 @@ class Purchase < ActiveRecord::Base
   belongs_to :show, touch: true
   belongs_to :user
   belongs_to :reservation, autosave: true, inverse_of: :purchase
+  belongs_to :promotion
   has_many :seats, as: :taken_by
 
   scope :still_not_finished, ->(date = Date.current) { joins(:show).references(:show).where(["shows.starts_at > ?", date]) }
 
   validate :payment_status_not_rejected
+  validate :check_promotion
 
   def self.from_reservation(reservation)
     new do |purchase|
@@ -25,6 +27,10 @@ class Purchase < ActiveRecord::Base
 
   def payment_status_not_rejected
     errors.add(:payment, "Pago rechazado") if payment_status == "rejected"
+  end
+
+  def check_promotion
+    promotion.validate(self) if promotion.present?
   end
 
 end

@@ -51,43 +51,5 @@ describe ReservationService do
 
   end
 
-  describe "using promotions" do
-    let(:show)  { shows(:Show_2) }
-    let(:code_promotion) { promotions(:code) }
-    let(:bank_promotion) { promotions(:bank) }
-
-    it "fails with an invalid promotion code" do
-      response = service.call seats_count: 2,
-        promotion_id: code_promotion.id, promotion_code: "invalid"
-
-      response.wont_be :successful?
-      response.errors[:promotion_code].wont_be_empty
-    end
-
-    it "succeeds with an valid promotion code" do
-      response = service.call seats_count: 2,
-        promotion_id: code_promotion.id, promotion_code: "some-code"
-
-      response.must_be :successful?
-      response.reservation.must_be :persisted?
-    end
-
-    it "fails with an invalid bank card number" do
-      response = service.call seats_count: 2,
-        promotion_id: bank_promotion.id, bank_card_number: "9invalid"
-
-      response.wont_be :successful?
-      response.errors[:bank_card_number].wont_be_empty
-    end
-
-    it "succeeds with an valid bank card number" do
-      response = service.call seats_count: 2,
-        promotion_id: bank_promotion.id, bank_card_number: "valid"
-
-      response.must_be :successful?
-      response.reservation.must_be :persisted?
-    end
-
-  end
 
 end
