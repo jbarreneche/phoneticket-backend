@@ -7,7 +7,7 @@ class Show < ActiveRecord::Base
   validates_presence_of :room
   validates_presence_of :starts_at
 
-  delegate :available_seats, :reserved_seats, :purchased_seats, to: :room_status
+  delegate :available_seats, :reserved_seats_count, :purchased_seats_count, to: :room_status
   delegate :room_shape, to: :room
 
   scope :active, -> { where(["starts_at > ?", Time.current]) }
