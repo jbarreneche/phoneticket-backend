@@ -20,7 +20,7 @@ class APIMoviesTest < ActionDispatch::IntegrationTest
     assert_equal 200, status
 
     # Matrix is currently displayed only in Room_1
-    assert_equal 1, json_response["theatres"].count
+    assert_equal 2, json_response["theatres"].count
   end
 
   def json_response

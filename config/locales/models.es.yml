@@ -92,6 +92,7 @@ es:
           one: "No se puede eliminar porque existe una %{record} asociada"
           many: "No se puede eliminar porque existen %{record} asociadas"
         in_future: "debe ser posterior al día de hoy"
+        time_expired: "ha finalizado el horario para reservar en esta función"
     models:
       admin_user:
         one: Administrador

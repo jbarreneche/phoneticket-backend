@@ -28,6 +28,10 @@ class Show < ActiveRecord::Base
     room_shape.places - taken_places
   end
 
+  def on_time_for_reservation?
+    (starts_at - 1.hour).future?
+  end
+
   def taken_places
     seats.map(&:code)
   end

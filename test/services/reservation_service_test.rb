@@ -51,5 +51,16 @@ describe ReservationService do
 
   end
 
+  describe "1 hour before the show starts" do
+    let(:show)  { shows(:ExpiringShow) }
+
+    it "fails to take reservations" do
+      response = service.call seats_count: 1
+
+      response.wont_be :successful?
+      response.errors[:show_id].wont_be_empty
+    end
+
+  end
 
 end

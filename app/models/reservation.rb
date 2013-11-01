@@ -9,6 +9,8 @@ class Reservation < ActiveRecord::Base
   scope :pending, -> { where(status: STATUS_PENDING) }
   scope :still_not_finished, ->(date = Date.current) { pending.joins(:show).references(:show).where(["shows.starts_at > ?", date]) }
 
+  validate :on_time_for_show, on: :create
+
   STATUSES =
     (STATUS_PENDING, STATUS_CANCELED, STATUS_COMPLETED = %w[pending canceled completed])
 
@@ -22,6 +24,12 @@ class Reservation < ActiveRecord::Base
 
   def cancellable?
     status == STATUS_PENDING
+  end
+
+  private
+
+  def on_time_for_show
+    errors.add(:show_id, :time_expired) unless show.on_time_for_reservation?
   end
 
 end
