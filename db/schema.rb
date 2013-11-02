@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131021180951) do
+ActiveRecord::Schema.define(version: 20131102163448) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20131021180951) do
     t.string   "validation_bank"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "description"
   end
 
   create_table "purchases", force: true do |t|
@@ -94,21 +95,34 @@ ActiveRecord::Schema.define(version: 20131021180951) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "kids_count"
+    t.integer  "promotion_id"
+    t.string   "promotion_code"
+    t.string   "card_number"
+    t.string   "payment_token"
+    t.string   "payment_status"
+    t.integer  "total_cents"
+    t.integer  "reservation_id"
   end
 
+  add_index "purchases", ["promotion_id"], name: "index_purchases_on_promotion_id"
+  add_index "purchases", ["reservation_id"], name: "index_purchases_on_reservation_id"
   add_index "purchases", ["show_id"], name: "index_purchases_on_show_id"
   add_index "purchases", ["user_id"], name: "index_purchases_on_user_id"
 
   create_table "reservations", force: true do |t|
     t.integer  "show_id"
     t.integer  "user_id"
-    t.integer  "purchase_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "status",      default: "pending"
+    t.string   "status",           default: "pending"
+    t.integer  "kids_count"
+    t.integer  "promotion_id"
+    t.string   "promotion_code"
+    t.string   "bank_card_number"
   end
 
-  add_index "reservations", ["purchase_id"], name: "index_reservations_on_purchase_id"
+  add_index "reservations", ["promotion_id"], name: "index_reservations_on_promotion_id"
   add_index "reservations", ["show_id"], name: "index_reservations_on_show_id"
   add_index "reservations", ["user_id", "status"], name: "index_reservations_on_user_id_and_status"
   add_index "reservations", ["user_id"], name: "index_reservations_on_user_id"
@@ -142,6 +156,7 @@ ActiveRecord::Schema.define(version: 20131021180951) do
     t.datetime "starts_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "numbered_seats", default: true
   end
 
   add_index "shows", ["movie_id"], name: "index_shows_on_movie_id"

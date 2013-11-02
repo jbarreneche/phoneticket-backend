@@ -1,5 +1,6 @@
 Movie_1:
   title: Matrix
+  price_setting: Normal
   synopsis: |
     A computer hacker learns from mysterious rebels about the true nature of his reality and his role in the war against its controllers.
   youtube_trailer: http://www.youtube.com/watch?v=m8e-FF8MsqU
@@ -8,6 +9,7 @@ Movie_1:
 
 Movie_2:
   title: Aviones
+  price_setting: Normal
   synopsis: |
     A cropdusting plane with a fear of heights lives his dream of competing in a famous around-the-world aerial race.
   youtube_trailer: http://www.youtube.com/watch?v=YRjztG65XgI
