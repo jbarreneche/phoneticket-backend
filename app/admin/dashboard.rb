@@ -41,22 +41,32 @@ ActiveAdmin.register_page "Dashboard" do
           end
         end
       end
+    end
 
+    columns do
       column do
-        panel "Info" do
-          link_to "Download!", admin_dashboard_sales_by_movie_path(format: :pdf)
+        panel "Entradas más vendidas por película" do
+          semantic_form_for :report, url: admin_dashboard_sales_by_movie_path(format: :pdf), method: :get, as: false do |f|
+            f.inputs do
+              f.input(:min_date, label: "Fecha inicio", input_html: { class: "datepicker" , max: "10", value: Date.today.beginning_of_month }) <<
+              f.input(:max_date, label: "Fecha fin", input_html: { class: "datepicker" , max: "10", value: Date.today.end_of_month })
+            end <<
+            f.actions do
+              f.action :submit, as: :button, label: "Descargar"
+            end
+          end
         end
       end
     end
   end # content
 
   page_action :sales_by_movie do
-    @min_date = Date.parse(params[:min_date] || "2013-01-01")
-    @max_date = Date.parse(params[:max_date] || "2013-12-31")
+    @min_date = Date.parse(report_params[:min_date] || "2013-01-01")
+    @max_date = Date.parse(report_params[:max_date] || "2013-12-31")
 
     shows  = Show.where(starts_at: @min_date..@max_date)
 
-    movies = Movie.scoped.joins(shows: :seats).merge(shows)
+    movies = Movie.all.joins(shows: :seats).merge(shows)
     movies_totals = movies.group("movies.id").count("seats.id")
     shows_by_movie_id = shows.includes(:movie, room: :theatre).
       where(movies: {id: movies_totals.keys}).group_by(&:movie_id)
@@ -82,6 +92,12 @@ ActiveAdmin.register_page "Dashboard" do
           show_as_html: params[:html].present?
       end
       format.html
+    end
+  end
+
+  controller do
+    def report_params
+      params.fetch(:report, {}).permit!
     end
   end
 
