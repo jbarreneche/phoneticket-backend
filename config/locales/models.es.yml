@@ -86,7 +86,6 @@ es:
               restrict_dependent_destroy:
                 one: "No se puede eliminar porque existe un asiento ocupado"
                 many: "No se puede eliminar porque existen asientos ocupados"
-    errors:
       messages:
         restrict_dependent_destroy:
           one: "No se puede eliminar porque existe una %{record} asociada"
@@ -94,6 +93,7 @@ es:
         in_future: "debe ser posterior al día de hoy"
         reservation_time_expired: "ha finalizado el horario para reservar en esta función"
         purchase_time_expired: "ha finalizado el horario para comprar en esta función"
+        invalid_bank: Número de tarjeta no corresponde al banco %{bank}
     models:
       admin_user:
         one: Administrador
@@ -143,7 +143,7 @@ es:
       romance: Romántica
       "sci-fi": "Ciencia Ficción"
       thriller: Thriller
-    errors:
+  errors:
     messages:
       carrierwave_processing_error: "No se puede redimensionar la imágen."
       carrierwave_integrity_error: "El archivo no es una imágen."

@@ -5,7 +5,7 @@ bank:
   ends_on: 2014-10-13
   discount_calculation_type: two_for_one
   validation_type: bank
-  validation_bank: MyString
+  validation_bank: Galicia
 
 code:
   starts_on: 2013-10-13

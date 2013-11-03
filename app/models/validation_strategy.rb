@@ -61,7 +61,7 @@ class ValidationStrategy
 
     def validate(promotionable)
       if promotionable.card_number.starts_with? "9"
-        promotionable.errors.add(:card_number, :invalid)
+        promotionable.errors.add(:card_number, :invalid_bank, bank: @bank)
       end
     end
   end
