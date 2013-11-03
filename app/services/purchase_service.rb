@@ -44,7 +44,11 @@ class PurchaseService
       new_purchase.payment_status = charge.status
     end
 
-    new_purchase.save
+    if seats.size == seats_count
+      new_purchase.save
+    else
+      new_purchase.errors.add(:seats_count, "No hay suficientes asientos disponibles")
+    end
 
     PurchaseResponse.new(new_purchase)
   end

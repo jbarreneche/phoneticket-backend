@@ -57,6 +57,24 @@ describe PurchaseReservationService do
 
   end
 
+  describe "with a numbered_seats show" do
+    let(:show)  { shows(:Show_2) }
+
+    it "succeeds when the seats are available" do
+      response = service.call valid_payment_information.merge(seats_count: 2)
+
+      response.must_be :successful?
+      response.purchase.must_be :persisted?
+    end
+
+    it "fails when seat is already occupied" do
+      response = service.call valid_payment_information.merge(seats_count: 100)
+
+      response.wont_be :successful?
+      response.errors[:seats_count].wont_be_empty
+    end
+  end
+
   describe "using promotions" do
     let(:show)  { shows(:Show_2) }
     let(:code_promotion) { promotions(:code) }
