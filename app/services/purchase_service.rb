@@ -19,7 +19,7 @@ class PurchaseService
       seats       = validate_seats! purchase_attributes.fetch(:seats)
       seats_count = seats.size
     else
-      seats_count = purchase_attributes.fetch(:seats_count)
+      seats_count = purchase_attributes.fetch(:seats_count).to_i
       seats       = select_seats seats_count
     end
 

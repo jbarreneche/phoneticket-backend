@@ -13,7 +13,7 @@ class ReservationService
       seats       = validate_seats! options.fetch(:seats)
       seats_count = seats.size
     else
-      seats_count = options.fetch(:seats_count)
+      seats_count = options.fetch(:seats_count).to_i
       seats       = select_seats seats_count
     end
 
