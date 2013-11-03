@@ -17,6 +17,15 @@ describe ReservationService do
       response.reservation.must_be :persisted?
     end
 
+    it "sets seats as reserved" do
+      response = service.call seats: %w[a-2 b-2]
+
+      response.must_be :successful?
+      response.reservation.seats.each do |seat|
+        seat.status.must_equal Seat::STATUS_RESERVED
+      end
+    end
+
     it "fails when seats dont exist" do
       lambda do
         service.call seats: shape.void_places.take(1)

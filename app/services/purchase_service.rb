@@ -34,7 +34,7 @@ class PurchaseService
       purchase.total_cents = PriceSetting.total_price_for(purchase)
 
       seats.each do |place|
-        purchase.seats.build(code: place, status: Seat::STATUS_RESERVED, taken_by: @user, show: @show)
+        purchase.seats.build(code: place, status: Seat::STATUS_PURCHASED, taken_by: @user, show: @show)
       end
     end
 

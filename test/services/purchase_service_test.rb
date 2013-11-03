@@ -24,6 +24,15 @@ describe PurchaseReservationService do
       response.purchase.must_be :persisted?
     end
 
+    it "sets seats as reserved" do
+      response = service.call seats: %w[a-2 b-2]
+
+      response.must_be :successful?
+      response.purchase.seats.each do |seat|
+        seat.status.must_equal Seat::STATUS_PURCHASED
+      end
+    end
+
     it "fails when seats dont exist" do
       lambda do
         service.call valid_payment_information.merge(seats: shape.void_places.take(1))
