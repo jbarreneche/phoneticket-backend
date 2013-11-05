@@ -16,7 +16,8 @@ PhoneTicket::Application.routes.draw do
       put "me" => "users#update", on: :collection
       post "sessions", on: :collection
     end
-    resources :reservations, only: [:destroy]
+    resources :reservations, only: [:destroy, :create]
+    resources :purchases, only: [:create]
     resources :movies, only: [:show, :index]
     resources :theatres, only: [:show, :index]
     resources :shows, only: [:show]

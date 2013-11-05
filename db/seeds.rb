@@ -43,11 +43,11 @@ end
 rooms = [theatre_1, theatre_2, theatre_3].flat_map do |theatre|
   room_1 = theatre.rooms.where(name: "Sala 1").first_or_initialize
   room_1.update_attributes(
-    shape: calc_shape(room_1.id + theatre.id)
+    shape: calc_shape(theatre.id + 1)
   )
   room_2 = theatre.rooms.where(name: "Sala 2").first_or_initialize
   room_2.update_attributes(
-    shape: calc_shape(room_2.id + theatre.id)
+    shape: calc_shape(theatre.id + 2)
   )
   [room_1, room_2]
 end
@@ -99,7 +99,7 @@ end
 
 def generate_purchase(show)
   user     = User.first
-  places   = show.room_shape.places.take(rand(3) + 1)
+  places   = show.room_shape.places.to_a.sort.take(rand(3) + 1)
   purchase = Purchase.new(user: user, show: show)
 
   places.each do |place|
@@ -110,7 +110,7 @@ end
 
 def generate_reservation(show)
   user        = User.first
-  places      = show.room_shape.places.reverse.take(rand(3) + 1)
+  places      = show.room_shape.places.to_a.sort.reverse.take(rand(3) + 1)
   reservation = Reservation.new(user: user, show: show)
 
   places.each do |place|

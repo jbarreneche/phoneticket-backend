@@ -2,3 +2,4 @@
 reservation_1:
   show: Show_1
   user: first_user
+  status: pending

@@ -35,6 +35,12 @@ class ValidationStrategy
       yield(:validation_code) unless code.present?
     end
 
+    def validate(promotionable)
+      unless promotionable.promotion_code == @code
+        promotionable.errors.add(:promotion_code, :invalid)
+      end
+    end
+
   end
 
   class Bank < ValidationStrategy
@@ -53,6 +59,11 @@ class ValidationStrategy
       yield(:validation_bank) unless bank.present?
     end
 
+    def validate(promotionable)
+      if promotionable.card_number.starts_with? "9"
+        promotionable.errors.add(:card_number, :invalid_bank, bank: @bank)
+      end
+    end
   end
 
 end

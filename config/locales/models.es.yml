@@ -6,7 +6,7 @@ es:
     audience_rating: Clasificación
     author: Autor
     author_type: Tipo de Autor
-    available_seats: Asientos disponibles
+    available_seats_count: Asientos disponibles
     body: Cuerpo
     cast_raw: Actores
     cast: Actores
@@ -36,10 +36,12 @@ es:
     movie_id: Película
     name: Nombre
     namespace: Sección
+    numbered_seats: Asientos numerados
     password: Contraseña
     password_confirmation: Confirmar contraseña
     phone_number: Teléfono
     price_setting: Precio
+    promotion: Promoción
     purchased_seats_count: Asientos Comprados
     reserved_seats_count: Asientos Reservados
     resource_id: Recurso
@@ -84,12 +86,14 @@ es:
               restrict_dependent_destroy:
                 one: "No se puede eliminar porque existe un asiento ocupado"
                 many: "No se puede eliminar porque existen asientos ocupados"
-    errors:
       messages:
         restrict_dependent_destroy:
           one: "No se puede eliminar porque existe una %{record} asociada"
           many: "No se puede eliminar porque existen %{record} asociadas"
         in_future: "debe ser posterior al día de hoy"
+        reservation_time_expired: "ha finalizado el horario para reservar en esta función"
+        purchase_time_expired: "ha finalizado el horario para comprar en esta función"
+        invalid_bank: Número de tarjeta no corresponde al banco %{bank}
     models:
       admin_user:
         one: Administrador
@@ -139,7 +143,7 @@ es:
       romance: Romántica
       "sci-fi": "Ciencia Ficción"
       thriller: Thriller
-    errors:
+  errors:
     messages:
       carrierwave_processing_error: "No se puede redimensionar la imágen."
       carrierwave_integrity_error: "El archivo no es una imágen."

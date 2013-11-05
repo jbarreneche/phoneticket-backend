@@ -5,7 +5,7 @@ class RoomStatus
     @taken_seats = seats.group(:status).count()
   end
 
-  def available_seats
+  def available_seats_count
     @room.total_seats - reserved_seats_count - purchased_seats_count
   end
 

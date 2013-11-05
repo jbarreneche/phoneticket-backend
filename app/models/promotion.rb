@@ -29,6 +29,10 @@ class Promotion < ActiveRecord::Base
     enabled_on(show.starts_at.to_date)
   end
 
+  def validate(promotionable)
+    validation_strategy.validate(promotionable)
+  end
+
   private
 
   def ends_in_future

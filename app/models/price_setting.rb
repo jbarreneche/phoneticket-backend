@@ -6,6 +6,10 @@ class PriceSetting < ActiveRecord::Base
   validates :adult_with_discount, :kid_with_discount, presence: true, numericality: { greater_than: 0 },
     if: :has_a_discount_day?
 
+  def self.total_price_for(reservation)
+    30
+  end
+
   def discount_days=(discounts)
     super(discounts.reject(&:blank?))
   end

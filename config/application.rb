@@ -14,13 +14,15 @@ module PhoneTicket
 
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    # config.time_zone = 'Central Time (US & Canada)'
+    config.time_zone = 'Buenos Aires'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = :es
     config.i18n.locale = :es
 
+    config.autoload_paths << Rails.root + "lib" + "services"
+    config.autoload_paths << Rails.root + "lib" + "payments"
     config.autoload_paths << Rails.root + "lib" + "mail_previews" if Rails.env.development?
 
     config.to_prepare do
