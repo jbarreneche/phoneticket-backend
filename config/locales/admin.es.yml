@@ -8,3 +8,5 @@ es:
     dashboard:
       sales_by_movie:
         title: Entradas más vendidas por película entre %{min_date} y %{max_date}
+      sales_by_hour:
+        title: Entradas más vendidas por hora entre %{min_date} y %{max_date}

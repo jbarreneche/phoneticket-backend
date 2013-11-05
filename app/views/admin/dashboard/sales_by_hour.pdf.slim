@@ -1,0 +1,21 @@
+= javascript_include_tag "https://www.google.com/jsapi"
+
+h1= t(".title", min_date: l(@min_date, format: :short), max_date: l(@max_date, format: :short))
+
+table
+  thead
+    tr
+      th Horario
+      th Cantidad vendida
+      th Complejo
+
+  tbody
+    - @shows_stats.each do |time, theatre, count|
+      tr
+        td= time
+        td(style="text-align: center")= count
+        td= theatre
+
+#chart-container
+
+= render_chart(@chart, "chart-container")

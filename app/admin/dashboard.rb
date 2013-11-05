@@ -57,8 +57,81 @@ ActiveAdmin.register_page "Dashboard" do
           end
         end
       end
+      column do
+        panel "Entradas más vendidas por hora" do
+          semantic_form_for :report, url: admin_dashboard_sales_by_hour_path(format: :pdf), method: :get, as: false do |f|
+            f.inputs do
+              f.input(:min_date, label: "Fecha inicio", input_html: { class: "datepicker" , max: "10", value: Date.today.beginning_of_month }) <<
+              f.input(:max_date, label: "Fecha fin", input_html: { class: "datepicker" , max: "10", value: Date.today.end_of_month })
+            end <<
+            f.actions do
+              f.action :submit, as: :button, label: "Descargar"
+            end
+          end
+        end
+      end
     end
   end # content
+
+  page_action :sales_by_hour do
+    @min_date = Date.parse(report_params[:min_date] || "2013-01-01")
+    @max_date = Date.parse(report_params[:max_date] || "2013-12-31")
+
+    shows_stats = ActiveRecord::Base.connection.exec_query <<-SQL
+      SELECT
+        #{time_function('shows.starts_at')} AS time,
+        theatres.name,
+        COUNT(seats.id) AS count_seats
+      FROM
+        "shows"
+      INNER JOIN
+        "seats" ON "seats"."show_id" = "shows"."id"
+      INNER JOIN
+        "rooms" ON "rooms"."id" = "shows"."room_id"
+      INNER JOIN
+        "theatres" ON "theatres"."id" = "rooms"."theatre_id"
+      WHERE
+        "seats"."status" = 'purchased' AND
+        ("shows"."starts_at" BETWEEN '#{@min_date.to_s(:db)}' AND '#{@max_date.to_s(:db)}')
+      GROUP BY
+        theatres.name, time
+      ORDER BY
+        time ASC, count_seats DESC
+    SQL
+    @shows_stats = shows_stats.rows
+
+    data_table = GoogleVisualr::DataTable.new
+    # Add Column Headers
+    data_table.new_column('string', 'Película' )
+    theatres = Theatre.pluck(:name)
+    theatres.each do |theatre|
+      data_table.new_column('number', theatre)
+    end
+
+    # Add Rows and Values
+    stats_by_time = @shows_stats.group_by(&:first)
+    times = (0..23).map {|h| "%02d:00" % h }
+    times.each do |time|
+      time_stats = stats_by_time.fetch(time, []).map {|arr| arr[1..2] }
+      stats_by_theatre = Hash[time_stats]
+      row = [time]
+      theatres.each do |theatre|
+        row.push stats_by_theatre.fetch(theatre, 0).to_i
+      end
+      data_table.add_rows [row]
+    end
+
+    opts   = { width: 800, height: 400, title: 'Horarios más vendidos', isStacked: true }
+    @chart = GoogleVisualr::Interactive::ColumnChart.new(data_table, opts)
+
+    respond_to do |format|
+      format.pdf do
+        render pdf: "dashboard", layout: "pdf.html",
+          show_as_html: params[:html].present?
+      end
+      format.html
+    end
+  end
 
   page_action :sales_by_movie do
     @min_date = Date.parse(report_params[:min_date] || "2013-01-01")
@@ -67,7 +140,10 @@ ActiveAdmin.register_page "Dashboard" do
     shows  = Show.where(starts_at: @min_date..@max_date)
 
     movies = Movie.all.joins(shows: :seats).merge(shows)
-    movies_totals = movies.group("movies.id").count("seats.id")
+    movies_totals = movies
+     .where(seats: {status: Seat::STATUS_PURCHASED})
+     .group("movies.id").count("seats.id")
+
     shows_by_movie_id = shows.includes(:movie, room: :theatre).
       where(movies: {id: movies_totals.keys}).group_by(&:movie_id)
 
@@ -98,6 +174,18 @@ ActiveAdmin.register_page "Dashboard" do
   controller do
     def report_params
       params.fetch(:report, {}).permit!
+    end
+
+    def time_function(column)
+      # Format times and fix Buenos Aires Timezone
+      case ActiveRecord::Base.connection.adapter_name
+      when "SQLite"
+        %{strftime('%H:00', #{column}, '-3 HOURS')}
+      when "PostgreSQL"
+        %{to_char(#{column} - time '03:00', 'HH24:00')}
+      else
+        raise "Unknown Adapter #{ActiveRecord::Base.connection.adapter_name} for time_function"
+      end
     end
   end
 
