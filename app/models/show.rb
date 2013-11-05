@@ -20,4 +20,12 @@ class Show < ActiveRecord::Base
     @room_status ||= RoomStatus.new(room, self.seats)
   end
 
+  def prices
+    movie.prices_for(starts_at.to_date)
+  end
+
+  def promotions
+    Promotion.enabled_for_show(self)
+  end
+
 end
