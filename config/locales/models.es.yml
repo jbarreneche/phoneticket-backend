@@ -42,8 +42,8 @@ es:
     phone_number: Teléfono
     price_setting: Precio
     promotion: Promoción
-    purchased_seats: Asientos Comprados
-    reserved_seats: Asientos Reservados
+    purchased_seats_count: Asientos Comprados
+    reserved_seats_count: Asientos Reservados
     resource_id: Recurso
     resource_type: Tipo de recurso
     room: Sala

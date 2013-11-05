@@ -1,3 +1,5 @@
+require 'set'
+
 ActiveAdmin.register Show do
   menu priority: 2
 
@@ -18,8 +20,8 @@ ActiveAdmin.register Show do
     end
     bool_column(:numbered_seats)
     column(:available_seats_count) {|show| show.available_seats_count }
-    column(:reserved_seats)  {|show| show.reserved_seats }
-    column(:purchased_seats) {|show| show.purchased_seats }
+    column(:reserved_seats_count)  {|show| show.reserved_seats_count }
+    column(:purchased_seats_count) {|show| show.purchased_seats_count }
 
     default_actions
   end
@@ -34,11 +36,17 @@ ActiveAdmin.register Show do
       row :starts_at
       bool_row :numbered_seats
       row :available_seats_count
-      row :reserved_seats
-      row :purchased_seats
+      row :reserved_seats_count
+      row :purchased_seats_count
       row :created_at
       row :updated_at
     end
+    h2 "Estado de reservas y compras"
+
+    render "room_status",
+      shape: show.room.room_shape,
+      reserved_places: Set.new(show.seats.reserved.pluck(:code)),
+      purchased_places: Set.new(show.seats.purchased.pluck(:code))
   end
 
   controller do
