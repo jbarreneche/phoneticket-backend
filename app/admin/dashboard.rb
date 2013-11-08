@@ -49,7 +49,8 @@ ActiveAdmin.register_page "Dashboard" do
           semantic_form_for :report, url: admin_dashboard_sales_by_movie_path(format: :pdf), method: :get, as: false do |f|
             f.inputs do
               f.input(:min_date, label: "Fecha inicio", input_html: { class: "datepicker" , max: "10", value: Date.today.beginning_of_month }) <<
-              f.input(:max_date, label: "Fecha fin", input_html: { class: "datepicker" , max: "10", value: Date.today.end_of_month })
+              f.input(:max_date, label: "Fecha fin", input_html: { class: "datepicker" , max: "10", value: Date.today.end_of_month }) <<
+              f.input(:theatre_id, label: "Complejo", collection: Theatre.all)
             end <<
             f.actions do
               f.action :submit, as: :button, label: "Descargar"
@@ -62,7 +63,8 @@ ActiveAdmin.register_page "Dashboard" do
           semantic_form_for :report, url: admin_dashboard_sales_by_hour_path(format: :pdf), method: :get, as: false do |f|
             f.inputs do
               f.input(:min_date, label: "Fecha inicio", input_html: { class: "datepicker" , max: "10", value: Date.today.beginning_of_month }) <<
-              f.input(:max_date, label: "Fecha fin", input_html: { class: "datepicker" , max: "10", value: Date.today.end_of_month })
+              f.input(:max_date, label: "Fecha fin", input_html: { class: "datepicker" , max: "10", value: Date.today.end_of_month }) <<
+              f.input(:theatre_id, label: "Complejo", collection: Theatre.all)
             end <<
             f.actions do
               f.action :submit, as: :button, label: "Descargar"
@@ -92,6 +94,7 @@ ActiveAdmin.register_page "Dashboard" do
         "theatres" ON "theatres"."id" = "rooms"."theatre_id"
       WHERE
         "seats"."status" = 'purchased' AND
+        #{and_with_theatre(report_params[:theatre_id])}
         ("shows"."starts_at" BETWEEN '#{@min_date.to_s(:db)}' AND '#{@max_date.to_s(:db)}')
       GROUP BY
         theatres.name, time
@@ -103,7 +106,11 @@ ActiveAdmin.register_page "Dashboard" do
     data_table = GoogleVisualr::DataTable.new
     # Add Column Headers
     data_table.new_column('string', 'Película' )
-    theatres = Theatre.pluck(:name)
+    theatres = if report_params[:theatre_id].present?
+      [Theatre.find(report_params[:theatre_id]).name]
+    else
+      Theatre.pluck(:name)
+    end
     theatres.each do |theatre|
       data_table.new_column('number', theatre)
     end
@@ -185,6 +192,12 @@ ActiveAdmin.register_page "Dashboard" do
         %{to_char(#{column} - time '03:00', 'HH24:00')}
       else
         raise "Unknown Adapter #{ActiveRecord::Base.connection.adapter_name} for time_function"
+      end
+    end
+
+    def and_with_theatre(theatre_id)
+      if theatre_id.present?
+        "theatres.id = #{theatre_id} AND"
       end
     end
   end
