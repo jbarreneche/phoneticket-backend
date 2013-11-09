@@ -20,6 +20,7 @@ es:
       timeout: 'Tu sesión ha expirado. Inicia sesión nuevamente.'
       inactive: 'Tu cuenta aun no ha sido activada.'
       disabled: "Tu cuenta ha sido deshabilitada debido al mal uso"
+      not_found_in_database: 'Email o contraseña inválidos.'
     sessions:
       signed_in: 'Iniciaste sesión correctamente.'
       signed_out: 'Cerraste sesión correctamente.'

@@ -50,7 +50,7 @@ ActiveAdmin.register_page "Dashboard" do
             f.inputs do
               f.input(:min_date, label: "Fecha inicio", input_html: { class: "datepicker" , max: "10", value: Date.today.beginning_of_month, required: true }) <<
               f.input(:max_date, label: "Fecha fin", input_html: { class: "datepicker" , max: "10", value: Date.today.end_of_month, required: true }) <<
-              f.input(:theatre_id, label: "Complejo", collection: Theatre.all) <<
+              f.input(:theatre_id, label: "Complejo", required: false, collection: Theatre.all) <<
               f.input(:html, as: :boolean, label: "Ver en HTML")
             end <<
             f.actions do
@@ -65,7 +65,7 @@ ActiveAdmin.register_page "Dashboard" do
             f.inputs do
               f.input(:min_date, label: "Fecha inicio", input_html: { class: "datepicker" , max: "10", value: Date.today.beginning_of_month, id: "report2_min_date" }) <<
               f.input(:max_date, label: "Fecha fin", input_html: { class: "datepicker" , max: "10", value: Date.today.end_of_month, id: "report2_max_date" }) <<
-              f.input(:theatre_id, label: "Complejo", collection: Theatre.all) <<
+              f.input(:theatre_id, label: "Complejo", collection: Theatre.all, required: false, input_html: { id: "report2_theatre_id" }) <<
               f.input(:html, as: :boolean, label: "Ver en HTML", input_html: { id: "report2_label" })
             end <<
             f.actions do
@@ -130,7 +130,7 @@ ActiveAdmin.register_page "Dashboard" do
       data_table.add_rows [row]
     end
 
-    opts   = { width: 800, height: 400, title: 'Horarios más vendidos', isStacked: true }
+    opts   = { width: 700, height: 400, title: 'Horarios más vendidos', isStacked: true }
     @chart = GoogleVisualr::Interactive::ColumnChart.new(data_table, opts)
 
     respond_to do |format|
@@ -173,7 +173,7 @@ ActiveAdmin.register_page "Dashboard" do
     # Add Rows and Values
     data_table.add_rows @sale_stats.map(&:to_table_row)
 
-    opts   = { width: 600, height: 400,
+    opts   = { width: 700, height: 400,
       title: 'Entradas vendidas por película', is3D: false,
       pieSliceText: "value"
     }
