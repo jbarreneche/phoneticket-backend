@@ -8,14 +8,16 @@ Show_1:
 Show_2:
   movie: Movie_1
   room: Room_2
-  starts_at: 2013-09-26 20:30:00.000000000 Z
+  numbered_seats: false
+  starts_at: <%= Date.current + 1 %> 19:00:00.000000000 Z
   created_at: 2013-09-21 01:26:45.742705000 Z
   updated_at: 2013-09-21 01:26:45.742705000 Z
 
-Show_3:
+ExpiringShow:
   movie: Movie_1
   room: Room_3
-  starts_at: 2013-09-26 21:00:00.000000000 Z
+  numbered_seats: false
+  starts_at: <%= Time.now + 59.minutes %>
   created_at: 2013-09-21 01:26:45.751536000 Z
   updated_at: 2013-09-21 01:26:45.751536000 Z
 

@@ -55,6 +55,11 @@ end
 
 # Use unicorn as the app server
 gem 'unicorn'
+gem 'guard-minitest'
+
+group :test do
+  gem 'turn'
+end
 
 group :development, :test do
   gem 'pry'

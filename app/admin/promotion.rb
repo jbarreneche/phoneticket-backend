@@ -19,6 +19,7 @@ ActiveAdmin.register Promotion do
     attributes_table do
       row :id
       row :name
+      row :description
       row :starts_on
       row :ends_on
       row(:discount_calculation) { movie.discount_calculation.to_s }
@@ -29,6 +30,7 @@ ActiveAdmin.register Promotion do
   form do |f|
     f.inputs "Promoción" do
       f.input :name
+      f.input :description
       f.input :starts_on
       f.input :ends_on
       f.input :discount_calculation_type, collection: discount_calculation_types_collection
@@ -47,7 +49,7 @@ ActiveAdmin.register Promotion do
   controller do
     def permitted_params
       params.permit promotion: [
-        :name, :starts_on, :ends_on,
+        :name, :description, :starts_on, :ends_on,
         :discount_calculation_type,
         :discount_n, :discount_x, :discount_percentage,
         :validation_type,

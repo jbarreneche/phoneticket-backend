@@ -37,6 +37,10 @@ class Movie < ActiveRecord::Base
     shows.active
   end
 
+  def prices_for(date)
+    price_setting.prices_for(date)
+  end
+
   private
 
   def at_least_one_actor
