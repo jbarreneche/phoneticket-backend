@@ -1,42 +1,7 @@
 require 'set'
 
 class Shape
-  CONFIGS = {
-    "standard" => { # Seats count = 46
-      "left" => {
-        "rows" => %w[a b c d],
-        "columns" => %w[1 2 3 4],
-        "void_places" => [%w[a 1]]
-      },
-      "middle" => {
-        "rows" => %w[a b c d],
-        "columns" => %w[5 6 7 8],
-        "void_places" => []
-      },
-      "right" => {
-        "rows" => %w[a b c d],
-        "columns" => %w[9 10 11 12],
-        "void_places" => [%w[a 12]]
-      }
-    },
-    "small" => { # Seats count = 10
-      "left" => {
-        "rows" => %w[a b],
-        "columns" => %w[1 2],
-        "void_places" => [%w[a 1]]
-      },
-      "middle" => {
-        "rows" => %w[a b],
-        "columns" => %w[3 4],
-        "void_places" => []
-      },
-      "right" => {
-        "rows" => %w[a b],
-        "columns" => %w[5 6],
-        "void_places" => [%w[a 6]]
-      }
-    }
-  }
+  CONFIGS = {}
 
   attr_reader :name
 
