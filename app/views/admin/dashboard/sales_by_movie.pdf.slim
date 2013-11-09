@@ -16,6 +16,11 @@ table
         td(style="text-align: center")= sale_stat.sales_count
         td= sale_stat.theatres.map(&:name).to_sentence
 
-#chart-container
+- if @sales_counted > 0
+  #chart-container
 
-= render_chart(@chart, "chart-container")
+  = render_chart(@chart, "chart-container")
+
+- else
+  p
+    | Lo sentimos. Pero no hubo ninguna venta para los filtros seleccionados

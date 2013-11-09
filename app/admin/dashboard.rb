@@ -48,9 +48,10 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Entradas más vendidas por película" do
           semantic_form_for :report, url: admin_dashboard_sales_by_movie_path(format: :pdf), method: :get, as: false do |f|
             f.inputs do
-              f.input(:min_date, label: "Fecha inicio", input_html: { class: "datepicker" , max: "10", value: Date.today.beginning_of_month }) <<
-              f.input(:max_date, label: "Fecha fin", input_html: { class: "datepicker" , max: "10", value: Date.today.end_of_month }) <<
-              f.input(:theatre_id, label: "Complejo", collection: Theatre.all)
+              f.input(:min_date, label: "Fecha inicio", input_html: { class: "datepicker" , max: "10", value: Date.today.beginning_of_month, required: true }) <<
+              f.input(:max_date, label: "Fecha fin", input_html: { class: "datepicker" , max: "10", value: Date.today.end_of_month, required: true }) <<
+              f.input(:theatre_id, label: "Complejo", collection: Theatre.all) <<
+              f.input(:html, as: :boolean, label: "Ver en HTML")
             end <<
             f.actions do
               f.action :submit, as: :button, label: "Descargar"
@@ -62,9 +63,10 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Entradas más vendidas por hora" do
           semantic_form_for :report, url: admin_dashboard_sales_by_hour_path(format: :pdf), method: :get, as: false do |f|
             f.inputs do
-              f.input(:min_date, label: "Fecha inicio", input_html: { class: "datepicker" , max: "10", value: Date.today.beginning_of_month }) <<
-              f.input(:max_date, label: "Fecha fin", input_html: { class: "datepicker" , max: "10", value: Date.today.end_of_month }) <<
-              f.input(:theatre_id, label: "Complejo", collection: Theatre.all)
+              f.input(:min_date, label: "Fecha inicio", input_html: { class: "datepicker" , max: "10", value: Date.today.beginning_of_month, id: "report2_min_date" }) <<
+              f.input(:max_date, label: "Fecha fin", input_html: { class: "datepicker" , max: "10", value: Date.today.end_of_month, id: "report2_max_date" }) <<
+              f.input(:theatre_id, label: "Complejo", collection: Theatre.all) <<
+              f.input(:html, as: :boolean, label: "Ver en HTML", input_html: { id: "report2_label" })
             end <<
             f.actions do
               f.action :submit, as: :button, label: "Descargar"
@@ -76,8 +78,8 @@ ActiveAdmin.register_page "Dashboard" do
   end # content
 
   page_action :sales_by_hour do
-    @min_date = Date.parse(report_params[:min_date] || "2013-01-01")
-    @max_date = Date.parse(report_params[:max_date] || "2013-12-31")
+    @min_date = Date.parse(report_params[:min_date].presence || "2013-01-01")
+    @max_date = Date.parse(report_params[:max_date].presence || "2013-12-31")
 
     shows_stats = ActiveRecord::Base.connection.exec_query <<-SQL
       SELECT
@@ -95,7 +97,7 @@ ActiveAdmin.register_page "Dashboard" do
       WHERE
         "seats"."status" = 'purchased' AND
         #{and_with_theatre(report_params[:theatre_id])}
-        ("shows"."starts_at" BETWEEN '#{@min_date.to_s(:db)}' AND '#{@max_date.to_s(:db)}')
+        ("shows"."starts_at" BETWEEN '#{@min_date.to_s(:db)}' AND '#{(@max_date + 1).to_s(:db)}')
       GROUP BY
         theatres.name, time
       ORDER BY
@@ -134,17 +136,17 @@ ActiveAdmin.register_page "Dashboard" do
     respond_to do |format|
       format.pdf do
         render pdf: "dashboard", layout: "pdf.html",
-          show_as_html: params[:html].present?
+          show_as_html: report_as_html?
       end
       format.html
     end
   end
 
   page_action :sales_by_movie do
-    @min_date = Date.parse(report_params[:min_date] || "2013-01-01")
-    @max_date = Date.parse(report_params[:max_date] || "2013-12-31")
+    @min_date = Date.parse(report_params[:min_date].presence || "2013-01-01")
+    @max_date = Date.parse(report_params[:max_date].presence || "2013-12-31")
 
-    shows  = Show.where(starts_at: @min_date..@max_date)
+    shows  = Show.where(starts_at: @min_date..(@max_date + 1))
     if report_params[:theatre_id].present?
       shows = shows.where(room_id: Room.where(theatre_id: report_params[:theatre_id]).pluck(:id))
     end
@@ -156,7 +158,9 @@ ActiveAdmin.register_page "Dashboard" do
     shows_by_movie_id = shows.includes(:movie, room: :theatre).
       where(movies: {id: movies_totals.keys}).group_by(&:movie_id)
 
+    @sales_counted = 0
     @sale_stats = movies_totals.map do |movie_id, count|
+      @sales_counted += count
       MovieSaleStat.new(shows_by_movie_id.fetch(movie_id), count)
     end.sort
 
@@ -174,7 +178,7 @@ ActiveAdmin.register_page "Dashboard" do
     respond_to do |format|
       format.pdf do
         render pdf: "dashboard", layout: "pdf.html",
-          show_as_html: params[:html].present?
+          show_as_html: report_as_html?
       end
       format.html
     end
@@ -201,6 +205,10 @@ ActiveAdmin.register_page "Dashboard" do
       if theatre_id.present?
         "theatres.id = #{theatre_id} AND"
       end
+    end
+
+    def report_as_html?
+      report_params[:html].presence == "1"
     end
   end
 
