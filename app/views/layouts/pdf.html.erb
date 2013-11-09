@@ -14,10 +14,20 @@
   	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   	<title><%= content_for?(:title) ? yield(:title) : "Phoneticket" %></title>
+     <%= wicked_pdf_stylesheet_link_tag "application" %>
 
   </head>
 
-  <body>
-    <%= yield %>
+  <body style="max-width: 960px">
+    <div style="text-align: right">
+      <% if report_as_html? %>
+        <%= image_tag "cinemar-logo-header.png", size: "114x50" %>
+      <% else %>
+        <%= wicked_pdf_image_tag "cinemar-logo-header.png", size: "114x50" %>
+      <% end %>
+    </div>
+    <div>
+      <%= yield %>
+    </div>
   </body>
 </html>

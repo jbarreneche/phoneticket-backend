@@ -1,12 +1,13 @@
 = javascript_include_tag "https://www.google.com/jsapi"
 
-h1= t(".title", min_date: l(@min_date, format: :short), max_date: l(@max_date, format: :short))
+h3(style="margin: 2em 0")
+  = t(".title", min_date: l(@min_date, format: :short), max_date: l(@max_date, format: :short))
 
-table
+table(style="width: 100%")
   thead
     tr
       th Horario
-      th Cantidad vendida
+      th(style="text-align: center") Cantidad vendida
       th Complejo
 
   tbody

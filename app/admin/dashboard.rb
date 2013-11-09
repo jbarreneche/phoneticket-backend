@@ -173,7 +173,10 @@ ActiveAdmin.register_page "Dashboard" do
     # Add Rows and Values
     data_table.add_rows @sale_stats.map(&:to_table_row)
 
-    opts   = { width: 600, height: 400, title: 'Entradas vendidas por película', is3D: false }
+    opts   = { width: 600, height: 400,
+      title: 'Entradas vendidas por película', is3D: false,
+      pieSliceText: "value"
+    }
     @chart = GoogleVisualr::Interactive::PieChart.new(data_table, opts)
 
     respond_to do |format|
@@ -186,6 +189,8 @@ ActiveAdmin.register_page "Dashboard" do
   end
 
   controller do
+    helper_method :report_as_html?
+
     def report_params
       params.fetch(:report, {}).permit!
     end
