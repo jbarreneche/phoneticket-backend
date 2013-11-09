@@ -1,0 +1,51 @@
+- shape = @show.room.room_shape
+- reserved_places = Set.new(@show.seats.reserved.pluck(:code))
+- purchased_places = Set.new(@show.seats.purchased.pluck(:code))
+
+h3 Entradas vendidas y reservas
+
+.row
+  .small-2.columns
+    dl
+      dt Película
+      dd= @show.movie.title
+      dt Sala
+      dd= @show.room.to_label
+      dt Horario
+      dd= l @show.starts_at, format: :short
+
+    h4 Asientos
+    dl
+      dt Disponibles
+      dd= @show.available_seats_count
+      dt Comprados
+      dd= @show.purchased_seats_count
+      dt Reservados
+      dd= @show.reserved_seats_count
+
+  .small-10.columns
+    - shape.each_body do |body|
+      table(style="float: left; margin-left: 10px; table-layout: fixed")
+        col(width="15px")
+        - body.columns.each do |_col|
+          col(width="20px")
+        thead
+          tr
+            th(style="padding: 0")
+            - body.columns.each do |col|
+              th(style="padding: 5px 0; text-align: center")= col
+        tbody
+          - body.rows.each do |row|
+            tr
+              td(style="background: #c3d9ff; padding: 0; text-align: center")= row
+              - body.columns.each do |col|
+                - place = "#{row}-#{col}"
+                td(style="padding: 2px 0; text-align: center")
+                  - if body.has_place? place
+                    - if reserved_places.include? place
+                      = image_tag_for_report "seat_reserved.png", size: "18x18"
+                    - elsif purchased_places.include? place
+                      = image_tag_for_report "seat_purchased.png", size: "18x18"
+                    - else
+                      = image_tag_for_report "seat_empty.png", size: "18x18"
+

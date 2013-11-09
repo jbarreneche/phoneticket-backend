@@ -49,11 +49,30 @@ ActiveAdmin.register Show do
       purchased_places: Set.new(show.seats.purchased.pluck(:code))
   end
 
+  member_action :pdf_download do
+    @show = resource
+    render pdf: "#{resource.id}-butacas-#{Time.now.strftime("%Y-%m-%d-%H:%M")}",
+      orientation: "Landscape", margin: { right: 5 },
+      show_as_html: report_as_html?,
+      layout: "pdf.html"
+  end
+
+
+  action_item only: [:show] do
+    link_to('Descargar PDF', pdf_download_admin_show_path(show))
+  end
+
   controller do
+    helper_method :report_as_html?
+
     def permitted_params
       params.permit show: [
         :movie_id, :room_id, :starts_at, :numbered_seats
       ]
+    end
+
+    def report_as_html?
+      params[:html].present?
     end
   end
 

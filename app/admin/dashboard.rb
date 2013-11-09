@@ -135,7 +135,7 @@ ActiveAdmin.register_page "Dashboard" do
 
     respond_to do |format|
       format.pdf do
-        render pdf: "dashboard", layout: "pdf.html",
+        render pdf: "Ventas por horario", layout: "pdf.html",
           show_as_html: report_as_html?
       end
       format.html
@@ -181,7 +181,7 @@ ActiveAdmin.register_page "Dashboard" do
 
     respond_to do |format|
       format.pdf do
-        render pdf: "dashboard", layout: "pdf.html",
+        render pdf: "Ventas por película", layout: "pdf.html",
           show_as_html: report_as_html?
       end
       format.html
