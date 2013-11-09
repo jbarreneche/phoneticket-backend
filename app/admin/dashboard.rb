@@ -50,11 +50,11 @@ ActiveAdmin.register_page "Dashboard" do
             f.inputs do
               f.input(:min_date, label: "Fecha inicio", input_html: { class: "datepicker" , max: "10", value: Date.today.beginning_of_month, required: true }) <<
               f.input(:max_date, label: "Fecha fin", input_html: { class: "datepicker" , max: "10", value: Date.today.end_of_month, required: true }) <<
-              f.input(:theatre_id, label: "Complejo", required: false, collection: Theatre.all) <<
-              f.input(:html, as: :boolean, label: "Ver en HTML")
+              f.input(:theatre_id, label: "Complejo", required: false, collection: Theatre.all)
             end <<
             f.actions do
-              f.action :submit, as: :button, label: "Descargar"
+              f.action(:submit, as: :button, label: "Descargar en PDF") <<
+              f.action(:submit, as: :button, label: "Ver en HTML", button_html: { name: "report[html]", value: '1' })
             end
           end
         end
@@ -65,11 +65,11 @@ ActiveAdmin.register_page "Dashboard" do
             f.inputs do
               f.input(:min_date, label: "Fecha inicio", input_html: { class: "datepicker" , max: "10", value: Date.today.beginning_of_month, id: "report2_min_date" }) <<
               f.input(:max_date, label: "Fecha fin", input_html: { class: "datepicker" , max: "10", value: Date.today.end_of_month, id: "report2_max_date" }) <<
-              f.input(:theatre_id, label: "Complejo", collection: Theatre.all, required: false, input_html: { id: "report2_theatre_id" }) <<
-              f.input(:html, as: :boolean, label: "Ver en HTML", input_html: { id: "report2_label" })
+              f.input(:theatre_id, label: "Complejo", collection: Theatre.all, required: false, input_html: { id: "report2_theatre_id" })
             end <<
             f.actions do
-              f.action :submit, as: :button, label: "Descargar"
+              f.action(:submit, as: :button, label: "Descargar en PDF") <<
+              f.action(:submit, as: :button, label: "Ver en HTML", button_html: { name: "report[html]", value: '1' })
             end
           end
         end
