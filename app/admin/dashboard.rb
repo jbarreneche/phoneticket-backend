@@ -145,11 +145,13 @@ ActiveAdmin.register_page "Dashboard" do
     @max_date = Date.parse(report_params[:max_date] || "2013-12-31")
 
     shows  = Show.where(starts_at: @min_date..@max_date)
+    if report_params[:theatre_id].present?
+      shows = shows.where(room_id: Room.where(theatre_id: report_params[:theatre_id]).pluck(:id))
+    end
 
-    movies = Movie.all.joins(shows: :seats).merge(shows)
-    movies_totals = movies
-     .where(seats: {status: Seat::STATUS_PURCHASED})
-     .group("movies.id").count("seats.id")
+    movies = Movie.all.joins(:shows).joins("LEFT OUTER JOIN seats ON seats.show_id = shows.id").merge(shows)
+    movies_totals = movies.group("movies.id")
+      .sum("CASE WHEN seats.status = '#{Seat::STATUS_PURCHASED}' THEN 1 else #{0} END") # Conditionally count seats... a where would remove movies
 
     shows_by_movie_id = shows.includes(:movie, room: :theatre).
       where(movies: {id: movies_totals.keys}).group_by(&:movie_id)
