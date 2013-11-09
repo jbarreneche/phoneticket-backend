@@ -160,6 +160,7 @@ ActiveAdmin.register_page "Dashboard" do
 
     @sales_counted = 0
     @sale_stats = movies_totals.map do |movie_id, count|
+      count = count.to_i
       @sales_counted += count
       MovieSaleStat.new(shows_by_movie_id.fetch(movie_id), count)
     end.sort
