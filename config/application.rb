@@ -30,7 +30,7 @@ module PhoneTicket
     end
 
     config.to_prepare do
-      shapes = YAML.load_file(Rails.root + "config" + "shapes.yaml")
+      shapes = YAML.load_file(Rails.root + "config" + "shapes.yml")
       Shape::SHAPES_CACHE.clear
       Shape::CONFIGS.replace shapes
     end
