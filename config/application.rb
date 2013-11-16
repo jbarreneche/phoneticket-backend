@@ -28,5 +28,11 @@ module PhoneTicket
     config.to_prepare do
       Devise::Mailer.layout "basic_email"
     end
+
+    config.to_prepare do
+      shapes = YAML.load_file(Rails.root + "config" + "shapes.yml")
+      Shape::SHAPES_CACHE.clear
+      Shape::CONFIGS.replace shapes
+    end
   end
 end
