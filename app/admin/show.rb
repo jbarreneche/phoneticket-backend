@@ -49,6 +49,16 @@ ActiveAdmin.register Show do
       purchased_places: Set.new(show.seats.purchased.pluck(:code))
   end
 
+  form do |f|
+    f.inputs "Función" do
+      f.input :movie
+      f.input :room
+      f.input :starts_at, as: :datetime, start_year: Date.today.year, end_year: Date.today.next_month.year
+    end
+
+    f.buttons
+  end
+
   member_action :pdf_download do
     @show = resource
     render pdf: "#{resource.id}-butacas-#{Time.now.strftime("%Y-%m-%d-%H:%M")}",

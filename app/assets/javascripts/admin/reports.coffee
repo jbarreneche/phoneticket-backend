@@ -1,14 +1,20 @@
 $ ->
-  $('.datepicker').datepicker(dateFormat: "yy-mm-dd")
+  $('.datepicker').datepicker(dateFormat: "dd/mm/yy")
   $('#report_min_date').change ->
-    $('#report_max_date').datepicker 'option', 'minDate', new Date($('#report_min_date').val() + " 05:00")
-    if $('#report_max_date').val() < $(this).val()
+    minDate = $.datepicker.parseDate "dd/mm/yy", $(this).val()
+    maxDate = $.datepicker.parseDate "dd/mm/yy", $("#report_max_date").val()
+    $('#report_max_date').datepicker 'option', 'minDate', minDate
+
+    if minDate > maxDate
       $('#report_max_date').val $(this).val()
 
   $('#report2_min_date').change ->
-    if $('#report2_max_date').val() < $(this).val()
+    minDate = $.datepicker.parseDate "dd/mm/yy", $(this).val()
+    maxDate = $.datepicker.parseDate "dd/mm/yy", $("#report2_max_date").val()
+    $('#report2_max_date').datepicker 'option', 'minDate', minDate
+
+    if minDate > maxDate
       $('#report2_max_date').val $(this).val()
-    $('#report2_max_date').datepicker 'option', 'minDate', new Date($('#report2_min_date').val() + " 05:00")
 
   $('#report_min_date').change()
   $('#report2_min_date').change()
