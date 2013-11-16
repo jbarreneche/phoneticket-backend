@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_many :purchases
   has_many :reservations
 
+  scope :unconfirmed, -> { where(confirmed_at: nil) }
+
   def unfinished_reservations
     reservations.still_not_finished.includes(:seats, show: [:room, :movie])
   end

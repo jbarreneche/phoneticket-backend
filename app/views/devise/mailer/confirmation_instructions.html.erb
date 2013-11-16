@@ -13,27 +13,13 @@
 </table>
 
 <%= content_for(:header) do %>
-  <table bgcolor="#CF0045">
+  <table bgcolor="#fcb13d">
     <tr>
-      <td><img src="http://placehold.it/200x50/" width="200" height="50"/></td>
+      <td><%= image_tag "cinemar-logo-big.png", size: "114x50" %></td>
       <td>
         <h2>Phoneticket</h2>
       </td>
       <td align="right"><h6 class="collapse"></h6></td>
-    </tr>
-  </table>
-<% end %>
-
-<%= content_for(:footer) do %>
-  <table>
-    <tr>
-      <td align="center">
-        <p>
-          <a href="#">Terms</a> |
-          <a href="#">Privacy</a> |
-          <a href="#"><unsubscribe>Unsubscribe</unsubscribe></a>
-        </p>
-      </td>
     </tr>
   </table>
 <% end %>
