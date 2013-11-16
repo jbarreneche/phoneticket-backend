@@ -3,6 +3,8 @@ class Theatre < ActiveRecord::Base
   has_many :shows, through: :rooms
   mount_uploader :photo, TheatrePhotoUploader
 
+  default_scope -> { order(:name) }
+
   def active_shows
     shows.active.includes(:movie, :room)
   end

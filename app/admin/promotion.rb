@@ -1,4 +1,5 @@
 ActiveAdmin.register Promotion do
+  menu priority: 2
 
   filter :name
   filter :starts_on

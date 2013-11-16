@@ -5,6 +5,8 @@ class Room < ActiveRecord::Base
   validates_uniqueness_of :name, scope: :theatre_id
   validates_presence_of :theatre, :name, :shape
 
+  default_scope -> { order(:name) }
+
   def to_label
     "#{name} (#{theatre})"
   end
