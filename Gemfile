@@ -38,6 +38,9 @@ gem 'zurb-foundation'
 gem 'carrierwave'
 gem 'cloudinary'
 
+gem "google_visualr", "~> 2.1.0"
+gem 'wicked_pdf'
+
 gem 'foreman'
 gem 'unicorn'
 
@@ -67,6 +70,7 @@ end
 group :staging, :production do
   gem 'pg'
   gem 'rails_12factor'
+  gem 'wkhtmltopdf-heroku'
 end
 
 group :assets do
@@ -79,4 +83,5 @@ group :development do
   gem 'sqlite3'
   gem "mail_view"
   gem 'pry-remote'
+  gem 'wkhtmltopdf-binary'
 end

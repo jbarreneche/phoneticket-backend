@@ -1,22 +1,23 @@
-- shape.each_body do |body|
-  table(style="width: 30%; float: left; margin-left: 30px")
-    thead
-      tr
-        th
-        - body.columns.each do |col|
-          th= col
-    tbody
-      - body.rows.each do |row|
+.container
+  - shape.each_body do |body|
+    table(style="width: 25%; float: left; margin-left: 10px")
+      thead
         tr
-          td(style="background: #c3d9ff")= row
+          th
           - body.columns.each do |col|
-            - place = "#{row}-#{col}"
-            td
-              - if body.has_place? place
-                - if reserved_places.include? place
-                  = image_tag "seat_reserved.png", title: "#{place} Reservado"
-                - elsif purchased_places.include? place
-                  = image_tag "seat_purchased.png", title: "#{place} Vendido"
-                - else
-                  = image_tag "seat_empty.png", title: "#{place} disponible"
+            th= col
+      tbody
+        - body.rows.each do |row|
+          tr
+            td(style="background: #c3d9ff")= row
+            - body.columns.each do |col|
+              - place = "#{row}-#{col}"
+              td(style="padding: 4px")
+                - if body.has_place? place
+                  - if reserved_places.include? place
+                    = image_tag "seat_reserved.png", title: "#{place} Reservado"
+                  - elsif purchased_places.include? place
+                    = image_tag "seat_purchased.png", title: "#{place} Vendido"
+                  - else
+                    = image_tag "seat_empty.png", title: "#{place} disponible"
 
