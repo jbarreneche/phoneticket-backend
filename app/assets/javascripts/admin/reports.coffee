@@ -1,3 +1,5 @@
+$.datepicker.setDefaults( $.datepicker.regional[ "es" ] );
+
 $ ->
   $('.datepicker').datepicker(dateFormat: "dd/mm/yy")
   $('#report_min_date').change ->
