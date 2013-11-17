@@ -1,7 +1,6 @@
 $.datepicker.setDefaults( $.datepicker.regional[ "es" ] );
 
 $ ->
-  $('.datepicker').datepicker(dateFormat: "dd/mm/yy")
   $('#report_min_date').change ->
     minDate = $.datepicker.parseDate "dd/mm/yy", $(this).val()
     maxDate = $.datepicker.parseDate "dd/mm/yy", $("#report_max_date").val()
