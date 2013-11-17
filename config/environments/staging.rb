@@ -66,6 +66,7 @@ PhoneTicket::Application.configure do
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { host: "phoneticket-stg.herokuapp.com" }
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.asset_host = "phoneticket-stg.herokuapp.com"
   config.action_mailer.smtp_settings = {
     :user_name => ENV['MAILTRAP_USER_NAME'],
     :password => ENV['MAILTRAP_PASSWORD'],
