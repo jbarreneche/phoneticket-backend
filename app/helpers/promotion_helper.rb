@@ -1,4 +1,4 @@
-module PromotionsHelper
+module PromotionHelper
 
   def discount_calculation_types_collection
     DiscountCalculation::DISCOUNT_CALCULATION_TYPES.map do |type|

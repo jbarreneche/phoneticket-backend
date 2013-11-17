@@ -25,6 +25,12 @@ ActiveAdmin.register Room do
         human_shape(room.shape)
       end
     end
+    h2 "Distribución del cine"
+
+    render "admin/shows/room_status",
+      shape: room.room_shape,
+      reserved_places: [],
+      purchased_places: []
   end
 
   form do |f|

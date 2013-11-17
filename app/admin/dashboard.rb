@@ -48,8 +48,8 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Entradas más vendidas por película" do
           semantic_form_for :report, url: admin_dashboard_sales_by_movie_path(format: :pdf), method: :get, as: false do |f|
             f.inputs do
-              f.input(:min_date, label: "Fecha inicio", input_html: { class: "datepicker" , max: "10", value: Date.today.beginning_of_month, required: true }) <<
-              f.input(:max_date, label: "Fecha fin", input_html: { class: "datepicker" , max: "10", value: Date.today.end_of_month, required: true }) <<
+              f.input(:min_date, label: "Fecha inicio", input_html: { class: "datepicker" , max: "10", value: l(Date.today.beginning_of_month), required: true }) <<
+              f.input(:max_date, label: "Fecha fin", input_html: { class: "datepicker" , max: "10", value: l(Date.today.end_of_month), required: true }) <<
               f.input(:theatre_id, label: "Complejo", required: false, collection: Theatre.all)
             end <<
             f.actions do
@@ -63,8 +63,8 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Entradas más vendidas por hora" do
           semantic_form_for :report, url: admin_dashboard_sales_by_hour_path(format: :pdf), method: :get, as: false do |f|
             f.inputs do
-              f.input(:min_date, label: "Fecha inicio", input_html: { class: "datepicker" , max: "10", value: Date.today.beginning_of_month, id: "report2_min_date" }) <<
-              f.input(:max_date, label: "Fecha fin", input_html: { class: "datepicker" , max: "10", value: Date.today.end_of_month, id: "report2_max_date" }) <<
+              f.input(:min_date, label: "Fecha inicio", input_html: { class: "datepicker" , max: "10", value: l(Date.today.beginning_of_month), id: "report2_min_date" }) <<
+              f.input(:max_date, label: "Fecha fin", input_html: { class: "datepicker" , max: "10", value: l(Date.today.end_of_month), id: "report2_max_date" }) <<
               f.input(:theatre_id, label: "Complejo", collection: Theatre.all, required: false, input_html: { id: "report2_theatre_id" })
             end <<
             f.actions do

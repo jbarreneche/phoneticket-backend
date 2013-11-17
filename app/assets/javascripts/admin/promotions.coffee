@@ -43,3 +43,13 @@ class PromotionForm
 $ ->
   $('form.promotion').each ->
     new PromotionForm($(this))
+
+  $('#promotion_starts_on').change ->
+    minDate = $.datepicker.parseDate "dd/mm/yy", $(this).val()
+    maxDate = $.datepicker.parseDate "dd/mm/yy", $("#promotion_ends_on").val()
+    $('#promotion_ends_on').datepicker 'option', 'minDate', minDate
+
+    if minDate > maxDate
+      $('#promotion_ends_on').val $(this).val()
+
+  $('#promotion_starts_on').change()

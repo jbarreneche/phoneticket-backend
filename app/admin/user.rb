@@ -25,6 +25,7 @@ ActiveAdmin.register User do
   end
 
   filter :email
+  filter :document
   filter :disabled_eq, as: :select, collection: [["Sí", true], ["No", false]]
 
   show do |user|

@@ -15,7 +15,7 @@ PhoneTicket::Application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => "#{ENV["HOST"] || 'localhost'}:#{ENV["PORT"] || 5000}" }
+  config.action_mailer.default_url_options = { :host => "#{ENV["HOST"] || 'localhost'}:#{ENV["PORT"] || 3000}" }
   config.action_mailer.delivery_method = :file
   config.action_mailer.file_settings = { location: "tmp/mails" }
 

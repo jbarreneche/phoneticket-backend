@@ -1,4 +1,5 @@
 ActiveAdmin.register Promotion do
+  menu priority: 2
 
   filter :name
   filter :starts_on
@@ -31,8 +32,8 @@ ActiveAdmin.register Promotion do
     f.inputs "Promoción" do
       f.input :name
       f.input :description
-      f.input :starts_on
-      f.input :ends_on
+      f.input :starts_on, as: :datepicker, input_html: { value: l(f.object.starts_on || Date.today) }
+      f.input :ends_on, as: :datepicker, input_html: { value: l(f.object.ends_on || Date.today.at_end_of_month) }
       f.input :discount_calculation_type, collection: discount_calculation_types_collection
       f.input :discount_n
       f.input :discount_x
