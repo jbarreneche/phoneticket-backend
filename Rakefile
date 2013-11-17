@@ -2,7 +2,9 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 if ENV['COVERAGE']
   require 'simplecov'
-  SimpleCov.start "rails"
+  SimpleCov.start "rails" do
+    add_filter '/app/admin/'
+  end
 end
 
 require File.expand_path('../config/application', __FILE__)
