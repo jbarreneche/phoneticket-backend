@@ -54,6 +54,7 @@ ActiveAdmin.register Show do
       f.input :movie
       f.input :room
       f.input :starts_at, as: :datetime, start_year: Date.today.year, end_year: Date.today.next_month.year
+      f.input :numbered_seats
     end
 
     f.buttons
