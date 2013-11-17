@@ -97,39 +97,48 @@ end
   room.shows.where(starts_at: Time.zone.parse("#{thursday} #{time}"), movie: planes).first_or_create!
 end
 
-def generate_purchase(show)
+def generate_purchase(show, places)
   user     = User.first
-  places   = show.room_shape.places.to_a.sort.take(rand(3) + 1)
   purchase = Purchase.new(user: user, show: show)
 
   places.each do |place|
     purchase.seats.build(code: place, status: Seat::STATUS_PURCHASED, taken_by: user, show: show)
   end
-  purchase.save
+  purchase.save(validate: false)
 end
 
-def generate_reservation(show)
+def generate_reservation(show, places)
   user        = User.first
-  places      = show.room_shape.places.to_a.sort.reverse.take(rand(3) + 1)
   reservation = Reservation.new(user: user, show: show)
 
   places.each do |place|
     reservation.seats.build(code: place, status: Seat::STATUS_RESERVED, taken_by: user, show: show)
   end
-  reservation.save
+  reservation.save(validate: false)
 end
 
 Show.all.each do |show|
-  next if show.seats.any?
+  total = show.room.total_seats
+  available_ratio = show.available_seats_count / show.room.total_seats.to_f
+  next if available_ratio < 0.2
 
-  case rand(10)
-  when 0..3
-    generate_purchase(show)
-  when 5..8
-    generate_reservation(show)
-  else
-    generate_purchase(show)
-    generate_reservation(show)
+
+  purchase_places = []
+  reservation_places = []
+
+  show.available_places.each do |place|
+    case rand(10)
+    when 0..1
+      reservation_places << place
+    when 2..7
+      purchase_places << place
+    else
+      # Leave empty
+    end
   end
+
+  generate_purchase(show, purchase_places)
+  generate_reservation(show, reservation_places)
+
 end
 
