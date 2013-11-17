@@ -17,6 +17,7 @@ es:
     current_sign_in_at: Fecha último ingreso
     current_sign_in_ip: IP de último ingreso
     date_of_birth: Fecha de nacimiento
+    description: Descripción
     disabled: Deshabilitado
     disabled_eq: Deshabilitado
     discount_days: Días con descuento
